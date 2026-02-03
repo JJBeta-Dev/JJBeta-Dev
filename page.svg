@@ -1,0 +1,371 @@
+<svg width="1600" height="2200" viewBox="0 0 1600 2200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070712"/>
+      <stop offset="55%" stop-color="#0B0B18"/>
+      <stop offset="100%" stop-color="#070712"/>
+    </linearGradient>
+
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0C0C16"/>
+      <stop offset="100%" stop-color="#0A0A14"/>
+    </linearGradient>
+
+    <radialGradient id="blob" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.55"/>
+      <stop offset="65%" stop-color="#7C3AED" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="sphere" cx="32%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#F3E8FF" stop-opacity="0.95"/>
+      <stop offset="26%" stop-color="#A855F7" stop-opacity="1"/>
+      <stop offset="65%" stop-color="#7C3AED" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#3B0764" stop-opacity="1"/>
+    </radialGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 .55 0" result="s"/>
+      <feOffset in="s" dx="0" dy="14" result="o"/>
+      <feMerge>
+        <feMergeNode in="o"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textDrop" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 .70 0" result="s"/>
+      <feOffset in="s" dx="0" dy="16" result="o"/>
+      <feMerge>
+        <feMergeNode in="o"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="chipShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 .55 0" result="s"/>
+      <feOffset in="s" dx="0" dy="8" result="o"/>
+      <feMerge>
+        <feMergeNode in="o"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      .font { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans; }
+      .h1 { font-size: 112px; font-weight: 950; letter-spacing: -1px; }
+      .h2 { font-size: 44px; font-weight: 900; letter-spacing: -0.5px; }
+      .h3 { font-size: 28px; font-weight: 900; letter-spacing: -0.2px; }
+      .p  { font-size: 18px; font-weight: 650; opacity: .78; }
+      .muted { opacity: .56; }
+      .link { fill: #A855F7; text-decoration: underline; }
+      .label { font-size: 16px; font-weight: 900; letter-spacing: .6px; }
+      .chipText { font-size: 16px; font-weight: 900; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="2200" fill="url(#bg)"/>
+
+  <circle cx="220" cy="200" r="260" fill="url(#blob)" opacity="0.85"/>
+  <circle cx="1420" cy="220" r="320" fill="url(#blob)" opacity="0.75"/>
+  <circle cx="1240" cy="720" r="260" fill="url(#blob)" opacity="0.55"/>
+  <circle cx="320" cy="1320" r="280" fill="url(#blob)" opacity="0.35"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M0,0 H520
+             C470,42 452,84 468,122
+             C490,170 452,218 390,242
+             C320,270 240,250 208,296
+             C170,350 214,418 150,470
+             C106,506 54,516 0,520 Z"
+          fill="#FFFFFF" opacity="0.08"/>
+    <path d="M0,0 H460
+             C420,40 404,82 418,120
+             C438,170 406,212 350,232
+             C292,252 226,238 198,276
+             C166,320 202,390 146,438
+             C108,470 60,492 0,504 Z"
+          fill="#FFFFFF" opacity="0.06"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M1600,0 H1080
+             C1130,46 1144,98 1126,138
+             C1100,198 1138,242 1208,266
+             C1288,294 1370,268 1406,318
+             C1450,382 1406,452 1474,504
+             C1514,536 1560,528 1600,510 Z"
+          fill="#FFFFFF" opacity="0.08"/>
+    <path d="M1600,0 H1140
+             C1176,44 1188,90 1174,126
+             C1152,184 1186,220 1246,242
+             C1310,266 1388,254 1416,292
+             C1450,338 1416,412 1470,456
+             C1508,488 1554,500 1600,488 Z"
+          fill="#FFFFFF" opacity="0.06"/>
+  </g>
+
+  <circle cx="220" cy="150" r="64" fill="url(#sphere)" filter="url(#softShadow)"/>
+  <circle cx="1410" cy="150" r="54" fill="url(#sphere)" filter="url(#softShadow)"/>
+
+  <text x="800" y="260" text-anchor="middle" class="font h1" fill="#FFFFFF" opacity="0.92" filter="url(#textDrop)">BIENVENIDO</text>
+
+  <g filter="url(#chipShadow)">
+    <rect x="650" y="300" width="110" height="52" rx="26" ry="26" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.90"/>
+    <text x="705" y="335" text-anchor="middle" class="font chipText" fill="#F3E8FF">Soy</text>
+  </g>
+
+  <text x="800" y="365" text-anchor="middle" class="font" style="font-size:124px; font-weight:980; letter-spacing:-1px;" fill="url(#purple)" filter="url(#textDrop)">JJBeta</text>
+
+  <text x="800" y="410" text-anchor="middle" class="font p" fill="#FFFFFF">pero mi nombre real es Jerónimo Jiménez Betancur</text>
+  <text x="800" y="444" text-anchor="middle" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.52">Full-Stack · UI/UX · Suminagashi / Waves</text>
+
+  <g class="font" style="font-size:18px; font-weight:850;">
+    <a href="https://tudominio.com" target="_blank"><text x="585" y="485" text-anchor="middle" class="link">Portfolio</text></a>
+    <text x="665" y="485" text-anchor="middle" fill="#FFFFFF" opacity="0.35">·</text>
+    <a href="https://github.com/tuusuario?tab=repositories" target="_blank"><text x="760" y="485" text-anchor="middle" class="link">Proyectos</text></a>
+    <text x="855" y="485" text-anchor="middle" fill="#FFFFFF" opacity="0.35">·</text>
+    <a href="mailto:tuemail@dominio.com"><text x="940" y="485" text-anchor="middle" class="link">Contacto</text></a>
+    <text x="1015" y="485" text-anchor="middle" fill="#FFFFFF" opacity="0.35">·</text>
+    <a href="https://linkedin.com/in/tuusuario" target="_blank"><text x="1090" y="485" text-anchor="middle" class="link">LinkedIn</text></a>
+  </g>
+
+  <g transform="translate(250,560)">
+    <g filter="url(#chipShadow)">
+      <rect x="0" y="0" width="190" height="44" rx="22" fill="#0B0B12" stroke="#7C3AED" stroke-opacity="0.85"/>
+      <text x="95" y="29" text-anchor="middle" class="font label" fill="#E9D5FF">DARK-FIRST</text>
+    </g>
+    <g filter="url(#chipShadow)">
+      <rect x="210" y="0" width="150" height="44" rx="22" fill="url(#purple)" opacity="0.95"/>
+      <text x="285" y="29" text-anchor="middle" class="font label" fill="#0B0B12">PURPLE</text>
+    </g>
+    <g filter="url(#chipShadow)">
+      <rect x="380" y="0" width="200" height="44" rx="22" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.85"/>
+      <text x="480" y="29" text-anchor="middle" class="font label" fill="#E9D5FF">MINIMALISM</text>
+    </g>
+    <g filter="url(#chipShadow)">
+      <rect x="600" y="0" width="140" height="44" rx="22" fill="url(#purple)" opacity="0.92"/>
+      <text x="670" y="29" text-anchor="middle" class="font label" fill="#0B0B12">WAVES</text>
+    </g>
+    <g filter="url(#chipShadow)">
+      <rect x="760" y="0" width="220" height="44" rx="22" fill="#0B0B12" stroke="#8B5CF6" stroke-opacity="0.85"/>
+      <text x="870" y="29" text-anchor="middle" class="font label" fill="#E9D5FF">SUMINAGASHI</text>
+    </g>
+  </g>
+
+  <g transform="translate(160,670)">
+    <rect x="0" y="0" width="1280" height="260" rx="26" fill="url(#card)" stroke="#A855F7" stroke-opacity="0.22" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Acerca de mí</text>
+    <text x="46" y="112" class="font p" fill="#FFFFFF">
+      Soy Jerónimo Jiménez Betancur (aka JJBeta). Construyo productos digitales con enfoque en claridad, estética premium y ejecución real.
+    </text>
+
+    <g class="font" style="font-size:18px; font-weight:750;" fill="#FFFFFF" opacity="0.88">
+      <circle cx="56" cy="156" r="6" fill="url(#purple)"/><text x="76" y="162">Velocidad y performance</text>
+      <circle cx="56" cy="188" r="6" fill="url(#purple)"/><text x="76" y="194">Arquitectura limpia y escalable</text>
+      <circle cx="56" cy="220" r="6" fill="url(#purple)"/><text x="76" y="226">UI/UX minimalista high-end (dark-mode)</text>
+
+      <circle cx="660" cy="156" r="6" fill="url(#purple)"/><text x="680" y="162">Seguridad y buenas prácticas</text>
+      <circle cx="660" cy="188" r="6" fill="url(#purple)"/><text x="680" y="194">Entrega continua sin dejar tareas abiertas</text>
+      <text x="46" y="250" class="font" style="font-size:16px; font-weight:650;" opacity="0.70">Simple, premium y escalable. Siempre.</text>
+    </g>
+  </g>
+
+  <g transform="translate(160,960)">
+    <rect x="0" y="0" width="620" height="300" rx="26" fill="url(#card)" stroke="#7C3AED" stroke-opacity="0.22" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Stack</text>
+
+    <g transform="translate(46,110)">
+      <g filter="url(#chipShadow)">
+        <rect x="0" y="0" width="245" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">HTML</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,72)">
+        <rect x="0" y="0" width="245" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">CSS</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,144)">
+        <rect x="0" y="0" width="245" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">JavaScript</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,216)">
+        <rect x="0" y="0" width="245" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">React</text>
+      </g>
+    </g>
+
+    <g transform="translate(330,118)" class="font">
+      <text x="0" y="0" class="mono" style="font-size:13px; font-weight:800;" fill="#FFFFFF" opacity="0.55">STACK FOCUS</text>
+
+      <rect x="0" y="18" width="250" height="220" rx="18" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.18"/>
+      <text x="18" y="56" style="font-size:18px; font-weight:900;" fill="#FFFFFF">Interfaces premium</text>
+      <text x="18" y="88" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">Componentes limpios, rápidos, accesibles.</text>
+
+      <text x="18" y="132" style="font-size:18px; font-weight:900;" fill="#FFFFFF">Web apps</text>
+      <text x="18" y="164" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">Dashboards, flujos y producto.</text>
+
+      <text x="18" y="208" style="font-size:18px; font-weight:900;" fill="#FFFFFF">UI/UX</text>
+      <text x="18" y="240" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">Design systems dark-first.</text>
+    </g>
+  </g>
+
+  <g transform="translate(820,960)">
+    <rect x="0" y="0" width="620" height="300" rx="26" fill="url(#card)" stroke="#A855F7" stroke-opacity="0.22" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Tools</text>
+
+    <g transform="translate(46,110)">
+      <g filter="url(#chipShadow)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">NPM</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,72)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">Postman</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,144)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">VS Code</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,216)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">Figma</text>
+      </g>
+    </g>
+
+    <g transform="translate(330,110)">
+      <g filter="url(#chipShadow)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">Photoshop</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,72)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">Affinity</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,144)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">Notion</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,216)">
+        <rect x="0" y="0" width="250" height="56" rx="18" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#purple)"/>
+        <text x="52" y="36" class="font chipText" fill="#FFFFFF">XAMPP · Antigravity</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(160,1290)">
+    <rect x="0" y="0" width="1280" height="220" rx="26" fill="url(#card)" stroke="#8B5CF6" stroke-opacity="0.20" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Lo que hago</text>
+
+    <g transform="translate(46,108)">
+      <g filter="url(#chipShadow)">
+        <rect x="0" y="0" width="360" height="60" rx="18" fill="#0B0B12" stroke="#7C3AED" stroke-opacity="0.50"/>
+        <text x="18" y="39" class="font chipText" fill="#FFFFFF">Frontend premium</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(400,0)">
+        <rect x="0" y="0" width="420" height="60" rx="18" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.50"/>
+        <text x="18" y="39" class="font chipText" fill="#FFFFFF">Web apps & dashboards</text>
+      </g>
+
+      <g filter="url(#chipShadow)" transform="translate(0,78)">
+        <rect x="0" y="0" width="520" height="60" rx="18" fill="#0B0B12" stroke="#8B5CF6" stroke-opacity="0.50"/>
+        <text x="18" y="39" class="font chipText" fill="#FFFFFF">UI/UX & Design Systems</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(160,1540)">
+    <rect x="0" y="0" width="1280" height="380" rx="26" fill="url(#card)" stroke="#A855F7" stroke-opacity="0.20" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Proyectos</text>
+
+    <g transform="translate(46,112)">
+      <rect x="0" y="0" width="1188" height="84" rx="20" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.07"/>
+      <text x="26" y="36" class="font" style="font-size:20px; font-weight:950;" fill="#FFFFFF">Prosperity Sphere</text>
+      <text x="26" y="62" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">E-commerce y embudos de conversión optimizados.</text>
+      <text x="920" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:850;" fill="#E9D5FF">Stack:</text>
+      <text x="1150" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.72">React · Stripe</text>
+    </g>
+
+    <g transform="translate(46,214)">
+      <rect x="0" y="0" width="1188" height="84" rx="20" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.07"/>
+      <text x="26" y="36" class="font" style="font-size:20px; font-weight:950;" fill="#FFFFFF">Oráculo IA</text>
+      <text x="26" y="62" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">Lecturas automáticas a partir de datos y prompts.</text>
+      <text x="920" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:850;" fill="#E9D5FF">Stack:</text>
+      <text x="1150" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.72">API · OpenAI</text>
+    </g>
+
+    <g transform="translate(46,316)">
+      <rect x="0" y="0" width="1188" height="84" rx="20" fill="#0B0B12" stroke="#FFFFFF" stroke-opacity="0.07"/>
+      <text x="26" y="36" class="font" style="font-size:20px; font-weight:950;" fill="#FFFFFF">Antigravity Lab</text>
+      <text x="26" y="62" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.70">Experimentos visuales, motion y UI components.</text>
+      <text x="920" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:850;" fill="#E9D5FF">Stack:</text>
+      <text x="1150" y="50" text-anchor="end" class="font" style="font-size:16px; font-weight:650;" fill="#FFFFFF" opacity="0.72">React · CSS</text>
+    </g>
+  </g>
+
+  <g transform="translate(160,1960)">
+    <rect x="0" y="0" width="1280" height="180" rx="26" fill="url(#card)" stroke="#7C3AED" stroke-opacity="0.18" filter="url(#softShadow)"/>
+    <text x="46" y="72" class="font h3" fill="#FFFFFF">Contacto</text>
+
+    <g class="font" style="font-size:18px; font-weight:700;" fill="#FFFFFF" opacity="0.86">
+      <text x="46" y="112">Email:</text>
+      <a href="mailto:tuemail@dominio.com"><text x="120" y="112" class="link">tuemail@dominio.com</text></a>
+
+      <text x="46" y="140">Web:</text>
+      <a href="https://tudominio.com" target="_blank"><text x="120" y="140" class="link">https://tudominio.com</text></a>
+
+      <text x="740" y="112">LinkedIn:</text>
+      <a href="https://linkedin.com/in/tuusuario" target="_blank"><text x="840" y="112" class="link">/in/tuusuario</text></a>
+
+      <text x="740" y="140">Instagram / Behance:</text>
+      <a href="https://instagram.com/tuusuario" target="_blank"><text x="950" y="140" class="link">@tuusuario</text></a>
+    </g>
+  </g>
+
+  <text x="800" y="2176" text-anchor="middle" class="font" style="font-size:16px; font-weight:750;" fill="#FFFFFF" opacity="0.55">
+    JJBeta · Dark-first · Purple minimalism · Waves everywhere
+  </text>
+</svg>

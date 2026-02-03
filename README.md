@@ -1,5 +1,9 @@
 <div align="center">
 
+<div align="center">
+  <img src="hero-jjbeta.svg" alt="JJBeta" width="100%"/>
+</div>
+
 ## BIENVENIDO
 
   <rect x="94" y="170" rx="16" ry="16" width="62" height="28" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.55"/>
@@ -22,10 +26,10 @@
 
 <br/>
 
-<a href="https://tudominio.com">Portfolio</a> ·
-<a href="https://github.com/tuusuario?tab=repositories">Proyectos</a> ·
-<a href="mailto:tuemail@dominio.com">Contacto</a> ·
-<a href="https://linkedin.com/in/tuusuario">LinkedIn</a>
+<a href="https://tudominio.com" style="color: #7C3AED">Portfolio</a> ·
+<a href="https://github.com/tuusuario?tab=repositories" style="color: #7C3AED">Proyectos</a> ·
+<a href="mailto:tuemail@dominio.com" style="color: #7C3AED">Contacto</a> ·
+<a href="https://linkedin.com/in/tuusuario" style="color: #7C3AED">LinkedIn</a>
 
 <br/><br/>
 

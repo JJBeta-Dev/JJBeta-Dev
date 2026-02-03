@@ -1,0 +1,77 @@
+<svg width="1600" height="520" viewBox="0 0 1600 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070712"/>
+      <stop offset="55%" stop-color="#0B0B18"/>
+      <stop offset="100%" stop-color="#070712"/>
+    </linearGradient>
+
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 .35 0" result="s"/>
+      <feMerge>
+        <feMergeNode in="s"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <radialGradient id="blobA" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.55"/>
+      <stop offset="70%" stop-color="#7C3AED" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="520" fill="url(#bg)"/>
+
+  <path d="M0,70 C220,0 380,5 560,70 C720,126 820,118 980,92 C1180,58 1285,80 1460,136 C1545,167 1585,160 1600,150 L1600,0 L0,0 Z"
+        fill="#0D0D1D" opacity="0.92"/>
+  <path d="M0,520 C90,420 250,380 390,402 C560,430 660,492 810,480 C1010,465 1140,410 1285,435 C1410,456 1510,490 1600,430 L1600,520 Z"
+        fill="#0D0D1D" opacity="0.92"/>
+
+  <circle cx="220" cy="120" r="220" fill="url(#blobA)" filter="url(#soft)"/>
+  <circle cx="1410" cy="140" r="280" fill="url(#blobA)" filter="url(#soft)"/>
+  <circle cx="1260" cy="420" r="200" fill="url(#blobA)" filter="url(#soft)"/>
+
+  <circle cx="210" cy="100" r="26" fill="url(#p)" opacity="0.95" filter="url(#soft)"/>
+  <circle cx="1380" cy="92" r="20" fill="url(#p)" opacity="0.8" filter="url(#soft)"/>
+  <circle cx="1440" cy="374" r="14" fill="url(#p)" opacity="0.55" filter="url(#soft)"/>
+
+  <path d="M-120 320 C 160 270, 360 420, 680 320 C 1000 220, 1200 440, 1500 320 C 1640 270, 1720 330, 1780 320"
+        fill="none" stroke="#A855F7" stroke-width="3" opacity="0.22"/>
+  <path d="M-120 356 C 200 300, 400 460, 740 356 C 1080 260, 1320 460, 1600 356 C 1720 318, 1780 360, 1820 356"
+        fill="none" stroke="#8B5CF6" stroke-width="3" opacity="0.16"/>
+  <path d="M-120 388 C 220 340, 440 495, 790 388 C 1140 300, 1380 495, 1620 388 C 1740 350, 1788 392, 1830 388"
+        fill="none" stroke="#7C3AED" stroke-width="3" opacity="0.12"/>
+
+  <text x="120" y="190" font-family="system-ui, -apple-system, Segoe UI, Roboto" font-size="78" font-weight="900" fill="#fff" opacity="0.93">
+    BIENVENIDO
+  </text>
+
+  <rect x="122" y="205" rx="18" ry="18" width="70" height="32" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.55"/>
+  <text x="145" y="227" font-family="system-ui, -apple-system, Segoe UI, Roboto" font-size="14" font-weight="900" fill="#E9D5FF">
+    Soy
+  </text>
+
+  <text x="205" y="265" font-family="system-ui, -apple-system, Segoe UI, Roboto" font-size="98" font-weight="950" fill="url(#p)">
+    JJBeta
+  </text>
+
+  <text x="122" y="312" font-family="system-ui, -apple-system, Segoe UI, Roboto" font-size="18" font-weight="650" fill="#fff" opacity="0.72">
+    pero mi nombre real es Jerónimo Jiménez Betancur
+  </text>
+
+  <text x="122" y="345" font-family="system-ui, -apple-system, Segoe UI, Roboto" font-size="14" font-weight="650" fill="#fff" opacity="0.48">
+    Full-Stack · UI/UX · Dark-first · Purple minimalism · Suminagashi / Waves
+  </text>
+</svg>

@@ -1,126 +1,37 @@
-<div align="center">
+<!--
+  Perfil de Jerónimo Jiménez Betancur (JJBeta).
+  Los paneles salen de scripts/build-assets.mjs y el tablero de actividad
+  se regenera cada día con .github/workflows/contributions.yml.
+-->
 
-<div align="center">
-  <img src="hero-jjbeta.svg" alt="JJBeta" width="100%"/>
-</div>
+<p align="center">
+  <img src="assets/hero.svg" width="100%" alt="Jerónimo Jiménez Betancur, UX/UI Designer y Front-End Developer en El Carmen de Viboral, Colombia. Diseño interfaces que se sienten como una sola pieza.">
+</p>
 
-## BIENVENIDO
+Soy **Jerónimo Jiménez Betancur**, pero en código me conocen como **JJBeta**. Diseño interfaces en Figma y las construyo con React, TypeScript y Tailwind CSS, cuidando que sean accesibles, tengan una semántica que se entienda y se vean como una sola pieza, no como bloques pegados.
 
-  <rect x="94" y="170" rx="16" ry="16" width="62" height="28" fill="#0B0B12" stroke="#A855F7" stroke-opacity="0.55"/>
-  <text x="114" y="190" font-family="ui-sans-serif, system-ui" font-size="14" font-weight="800" fill="#E9D5FF">
-    Soy
-  </text>
+<p align="center">
+  <img src="assets/principles.svg" width="100%" alt="Cómo trabajo. 01, Accesible por defecto: contraste real, foco visible y todo usable con teclado; si alguien no puede usarlo, no está terminado. 02, Semántica que se entiende: HTML con sentido para lectores de pantalla y buscadores; el SEO empieza en el marcado. 03, Una sola pieza: tokens compartidos y ritmo constante; cada sección conversa con la siguiente.">
+</p>
 
-  <text x="165" y="215" font-family="ui-sans-serif, system-ui" font-size="78" font-weight="950" fill="url(#p)">
-    JJBeta
-  </text>
+<p align="center">
+  <img src="assets/stack.svg" width="100%" alt="Herramientas. Diseño: Figma, Photoshop y Affinity. Código: HTML, CSS, JavaScript, TypeScript, React y Tailwind CSS. Calidad: Vite, Vitest, ESLint y npm. Flujo: Git, GitHub, Postman, Yaak, Warp y Zed. Siguiente: Next.js, en progreso.">
+</p>
 
-  <text x="94" y="252" font-family="ui-sans-serif, system-ui" font-size="16" font-weight="650" fill="#FFFFFF" opacity="0.70">
-    pero mi nombre real es Jerónimo Jiménez Betancur
-  </text>
+<p align="center">
+  <img src="assets/changelog.svg" width="100%" alt="Changelog: siempre en beta. v19.0, actual: interfaces en React y TypeScript con Tailwind CSS, accesibilidad, semántica y SEO desde el primer commit, pruebas con Vitest. v20.0, en el roadmap: Next.js y proyectos personales públicos. El número de versión es mi edad.">
+</p>
 
-  <text x="94" y="280" font-family="ui-sans-serif, system-ui" font-size="13" font-weight="650" fill="#FFFFFF" opacity="0.46">
-    Full-Stack · UI/UX · Suminagashi / Waves
-  </text>
-</svg>
+<p align="center">
+  <img src="assets/contributions.svg" width="100%" alt="Actividad en GitHub de los últimos 12 meses, con total de contribuciones, rachas y calendario por días. Se actualiza a diario.">
+</p>
 
-<br/>
+<p align="center">
+  <img src="assets/contact.svg" width="100%" alt="Contacto: ¿una vacante, un proyecto o ganas de hablar de diseño? Escríbeme, respondo rápido.">
+</p>
 
-<a href="https://tudominio.com" style="color: #7C3AED">Portfolio</a> ·
-<a href="https://github.com/tuusuario?tab=repositories" style="color: #7C3AED">Proyectos</a> ·
-<a href="mailto:tuemail@dominio.com" style="color: #7C3AED">Contacto</a> ·
-<a href="https://linkedin.com/in/tuusuario" style="color: #7C3AED">LinkedIn</a>
-
-<br/><br/>
-
-<img src="https://img.shields.io/badge/Dark--First-0B0B12?style=for-the-badge&labelColor=7C3AED&color=0B0B12" height="28"/>
-<img src="https://img.shields.io/badge/Purple-0B0B12?style=for-the-badge&labelColor=A855F7&color=0B0B12" height="28"/>
-<img src="https://img.shields.io/badge/Minimalism-0B0B12?style=for-the-badge&labelColor=8B5CF6&color=0B0B12" height="28"/>
-<img src="https://img.shields.io/badge/Waves-0B0B12?style=for-the-badge&labelColor=7C3AED&color=0B0B12" height="28"/>
-<img src="https://img.shields.io/badge/Suminagashi-0B0B12?style=for-the-badge&labelColor=A855F7&color=0B0B12" height="28"/>
-
-</div>
-
----
-
-## Acerca de mí
-
-Soy Jerónimo Jiménez Betancur (aka JJBeta). Construyo productos digitales con enfoque en claridad, estética premium y ejecución real.
-
-- Velocidad y performance  
-- Arquitectura limpia y escalable  
-- UI/UX minimalista high-end (dark-mode)  
-- Seguridad y buenas prácticas  
-- Entrega continua sin dejar tareas abiertas  
-
-Simple, premium y escalable. Siempre.
-
----
-
-## Stack
-
-<div align="center">
-  <img src="https://img.shields.io/badge/HTML5-0B0B12?style=for-the-badge&logo=html5&logoColor=E9D5FF&labelColor=7C3AED" height="34"/>
-  <img src="https://img.shields.io/badge/CSS3-0B0B12?style=for-the-badge&logo=css3&logoColor=E9D5FF&labelColor=A855F7" height="34"/>
-  <img src="https://img.shields.io/badge/JavaScript-0B0B12?style=for-the-badge&logo=javascript&logoColor=E9D5FF&labelColor=8B5CF6" height="34"/>
-  <img src="https://img.shields.io/badge/React-0B0B12?style=for-the-badge&logo=react&logoColor=E9D5FF&labelColor=7C3AED" height="34"/>
-</div>
-
----
-
-## Tools
-
-<div align="center">
-  <img src="https://img.shields.io/badge/NPM-0B0B12?style=for-the-badge&logo=npm&logoColor=E9D5FF&labelColor=7C3AED" height="34"/>
-  <img src="https://img.shields.io/badge/Postman-0B0B12?style=for-the-badge&logo=postman&logoColor=E9D5FF&labelColor=A855F7" height="34"/>
-  <img src="https://img.shields.io/badge/VS%20Code-0B0B12?style=for-the-badge&logo=visualstudiocode&logoColor=E9D5FF&labelColor=8B5CF6" height="34"/>
-  <img src="https://img.shields.io/badge/Figma-0B0B12?style=for-the-badge&logo=figma&logoColor=E9D5FF&labelColor=7C3AED" height="34"/>
-  <img src="https://img.shields.io/badge/Photoshop-0B0B12?style=for-the-badge&logo=adobephotoshop&logoColor=E9D5FF&labelColor=A855F7" height="34"/>
-  <img src="https://img.shields.io/badge/Affinity-0B0B12?style=for-the-badge&logo=affinitydesigner&logoColor=E9D5FF&labelColor=8B5CF6" height="34"/>
-  <img src="https://img.shields.io/badge/Notion-0B0B12?style=for-the-badge&logo=notion&logoColor=E9D5FF&labelColor=7C3AED" height="34"/>
-  <img src="https://img.shields.io/badge/XAMPP-0B0B12?style=for-the-badge&logo=xampp&logoColor=E9D5FF&labelColor=A855F7" height="34"/>
-  <img src="https://img.shields.io/badge/Antigravity-0B0B12?style=for-the-badge&logo=rocket&logoColor=E9D5FF&labelColor=8B5CF6" height="34"/>
-</div>
-
----
-
-## Lo que hago
-
-<div align="center">
-
-<img src="https://img.shields.io/badge/Frontend%20premium-0B0B12?style=for-the-badge&labelColor=7C3AED&color=0B0B12" height="34"/>
-<img src="https://img.shields.io/badge/Web%20apps%20%26%20dashboards-0B0B12?style=for-the-badge&labelColor=A855F7&color=0B0B12" height="34"/>
-<img src="https://img.shields.io/badge/UI%2FUX%20%26%20Design%20Systems-0B0B12?style=for-the-badge&labelColor=8B5CF6&color=0B0B12" height="34"/>
-
-</div>
-
----
-
-## Proyectos
-
-- Prosperity Sphere  
-  E-commerce y embudos de conversión optimizados.  
-  Stack: React · Stripe
-
-- Oráculo IA  
-  Lecturas automáticas a partir de datos y prompts.  
-  Stack: API · OpenAI
-
-- Antigravity Lab  
-  Experimentos visuales, motion y UI components.  
-  Stack: React · CSS
-
----
-
-## Contacto
-
-Email: tuemail@dominio.com  
-Web: https://tudominio.com  
-LinkedIn: https://linkedin.com/in/tuusuario  
-Instagram / Behance: https://instagram.com/tuusuario  
-
----
-
-<div align="center">
-JJBeta · Dark-first · Purple minimalism · Waves everywhere
-</div>
+<p align="center">
+  <a href="mailto:jjbetacode@gmail.com"><img src="assets/btn-email.svg" height="52" alt="Escribir a jjbetacode@gmail.com"></a>
+  &nbsp;
+  <a href="https://www.instagram.com/jnz_jero/"><img src="assets/btn-instagram.svg" height="52" alt="Instagram @jnz_jero"></a>
+</p>

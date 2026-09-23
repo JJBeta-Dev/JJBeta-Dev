@@ -1,0 +1,31 @@
+name: Tablero de contribuciones
+
+on:
+  schedule:
+    - cron: '17 5 * * *' # 00:17 en Colombia
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [scripts/contributions.mjs, scripts/lib.mjs]
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node scripts/contributions.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: ${{ github.repository_owner }}
+      - name: Guardar si cambió
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/contributions.svg
+          git diff --staged --quiet || (git commit -m "chore: actualizar tablero de contribuciones" && git push)

@@ -1,0 +1,12 @@
+{
+  "name": "jjbeta-profile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-assets.mjs",
+    "contributions": "node scripts/contributions.mjs"
+  },
+  "devDependencies": {
+    "opentype.js": "^1.3.4"
+  }
+}

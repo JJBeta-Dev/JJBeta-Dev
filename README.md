@@ -15,7 +15,11 @@ Soy **Jerónimo Jiménez Betancur**, pero en código me conocen como **JJBeta**.
 </p>
 
 <p align="center">
-  <img src="assets/stack.svg" width="100%" alt="Herramientas. Diseño: papel y lápiz primero, luego Figma y Photoshop. Código: HTML, CSS, JavaScript, TypeScript, React y Tailwind CSS. Flujo: Vite, Vitest, Git, Yaak y Zed. Siguiente: Next.js, en progreso.">
+  <img src="assets/stack.svg" width="100%" alt="Herramientas. Diseño: papel y lápiz primero, luego Figma y Photoshop. Código: HTML, CSS, JavaScript, TypeScript, React y Tailwind CSS. Datos y forms: TanStack Query, Zustand, Zod y React Hook Form. Automatización: Make, n8n y Ollama. Flujo: Vite, Vitest, Git, Yaak y Zed. Siguiente: Next.js, en progreso.">
+</p>
+
+<p align="center">
+  <img src="assets/automation.svg" width="100%" alt="Automatización: automatizo lo repetitivo. Flujo hecho en Make: 1, Telegram recibe el mensaje o el audio de la reunión; 2, Groq lo transcribe; 3, Gemini planea la tarea, su prioridad y sugiere responsable según las habilidades del equipo; 4, Notion crea la tarea asignada; 5, Telegram confirma al equipo. También trabajo con n8n y modelos locales en Ollama.">
 </p>
 
 <p align="center">

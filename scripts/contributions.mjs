@@ -96,7 +96,7 @@ const legend = `<text x="${legendX - 16}" y="${H - 44}" text-anchor="end" style=
   ${Object.values(levels).map((f, i) => `<rect x="${legendX + i * step}" y="${H - 56}" width="${cell}" height="${cell}" rx="4" fill="${f}"/>`).join('')}
   <text x="${legendX + 5 * step + 8}" y="${H - 44}" style="${font.mono};font-size:14px" fill="${color.muted}">más</text>`
 
-const body = `${sectionLabel('04', 'Actividad')}
+const body = `${sectionLabel('05', 'Actividad')}
   <text x="${W - 56}" y="64" text-anchor="end" style="${font.mono};font-size:15px" fill="${color.muted}">últimos 12 meses · actualizado ${fmt(today)}</text>
   ${statsSvg}
   ${monthLabels}${dayLabels}${cells}

@@ -3,7 +3,7 @@ import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import {
-  W, color, font, ease, esc, frame, sectionLabel, icon, fontFace,
+  W, color, font, ease, esc, frame, sectionLabel, glyph, fontFace,
   suminagashi, ornamentCss, measurer, wrap,
 } from './lib.mjs'
 
@@ -154,6 +154,8 @@ const outline = (size, sw = 1.6) =>
   const rows = [
     ['Diseño', [['pencil', 'Papel y lápiz'], ['figma', 'Figma'], ['adobephotoshop', 'Photoshop']]],
     ['Código', [['html5', 'HTML'], ['css', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'], ['tailwindcss', 'Tailwind CSS']]],
+    ['Datos y forms', [['reactquery', 'TanStack Query'], ['zustand', 'Zustand'], ['zod', 'Zod'], ['reacthookform', 'React Hook Form']]],
+    ['Automatización', [['make', 'Make'], ['n8n', 'n8n'], ['ollama', 'Ollama']]],
     ['Flujo', [['vite', 'Vite'], ['vitest', 'Vitest'], ['git', 'Git'], ['yaak', 'Yaak'], ['zedindustries', 'Zed']]],
   ]
   const x0 = 232
@@ -176,9 +178,7 @@ const outline = (size, sw = 1.6) =>
     lines.forEach((ln, li) => ln.forEach((it, k) => {
       const iy = cy + li * 44
       parts.push(`<g class="rise" style="animation-delay:${r * 90 + k * 40}ms">
-        ${it.slug === 'pencil'
-          ? `<g transform="translate(${it.x} ${iy - 11}) scale(${22 / 24})" fill="none" stroke="${color.lilac}" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M4 20l1.1-4.4L16.2 4.5a2.1 2.1 0 0 1 3 0l.3.3a2.1 2.1 0 0 1 0 3L8.4 18.9Z"/><path d="M14.5 6.2l3.3 3.3M4 20l4.4-1.1"/></g>`
-          : `<path transform="translate(${it.x} ${iy - 11}) scale(${22 / 24})" d="${icon(it.slug)}" fill="${color.lilac}"/>`}
+        ${glyph(it.slug, it.x, iy - 11)}
         <text x="${it.x + 32}" y="${iy + 7}" style="${font.body};font-size:20px" fill="${color.text}">${esc(it.name)}</text>
       </g>`)
     }))
@@ -192,7 +192,7 @@ const outline = (size, sw = 1.6) =>
   const tagW = measure('mono', tag, 14) + 36
   const nextW = measure('body', 'Next.js', 20)
   parts.push(`<text x="56" y="${cy + 6}" style="${font.mono};font-size:15px;letter-spacing:.1em" fill="${color.muted}">SIGUIENTE</text>
-    <path transform="translate(${nx} ${cy - 11}) scale(${22 / 24})" d="${icon('nextdotjs')}" fill="${color.lilac}" opacity=".6"/>
+    ${glyph('nextdotjs', nx, cy - 11, 22, color.lilac, 0.6)}
     <text x="${nx + 32}" y="${cy + 7}" style="${font.body};font-size:20px" fill="${color.muted}">Next.js</text>
     <g transform="translate(${nx + 32 + nextW + 16} ${cy - 14})">
       <rect width="${tagW}" height="28" rx="14" fill="none" stroke="${color.brand2}" stroke-dasharray="4 4"/>
@@ -210,6 +210,66 @@ const outline = (size, sw = 1.6) =>
 .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}`,
     body: `${sectionLabel('02', 'Herramientas')}${parts.join('')}`,
+  }))
+}
+
+// ---------------------------------------------------------------- automatización
+{
+  const nodes = [
+    ['telegram', 'Telegram', 'Disparador', 'Llega el mensaje o el audio de la reunión'],
+    ['groq', 'Groq', 'Transcribe', 'El audio pasa a texto en segundos'],
+    ['googlegemini', 'Gemini', 'Planea', 'Pasos, prioridad y responsable según habilidades'],
+    ['notion', 'Notion', 'Crea', 'La tarea queda lista y asignada'],
+    ['telegram', 'Telegram', 'Avisa', 'Confirma al equipo en el mismo chat'],
+  ]
+  const gap = 34
+  const nw = (W - 112 - gap * (nodes.length - 1)) / nodes.length
+  const descs = nodes.map((n) => wrap(measure, 'body', n[3], 17, nw - 36))
+  const nh = 104 + Math.max(...descs.map((d) => d.length)) * 23
+
+  const sub = wrap(measure, 'body', 'Le mando a un bot de Telegram lo que salió de una reunión y el flujo planea la tarea, la crea en Notion y sugiere a quién asignarla según las habilidades de cada persona del equipo.', 20, 780)
+  const top = 198 + sub.length * 30 + 40
+  const H = top + nh + 84
+  const madeW = measure('mono', 'hecho en Make', 14) + 50
+  const title = 'Automatizo lo'
+  const titleW = measure('display', title, 46) * 0.98 + 10
+  const portY = top + 46
+
+  const cards = nodes.map((n, i) => {
+    const x = 56 + i * (nw + gap)
+    const wire = i === nodes.length - 1 ? '' : `
+      <path class="wire" d="M${x + nw + 5} ${portY}H${x + nw + gap - 5}" stroke="${color.brand3}" stroke-width="1.6" fill="none"/>`
+    return `<g class="rise" style="animation-delay:${i * 140}ms">
+      <rect x="${x}" y="${top}" width="${nw}" height="${nh}" rx="16" fill="${color.bg}" stroke="${i === 0 ? color.brand3 : color.line}"/>
+      ${glyph(n[0], x + 18, top + 35)}
+      <text x="${x + 50}" y="${top + 53}" style="${font.body};font-size:19px" fill="${color.text}">${n[1]}</text>
+      <text x="${x + 18}" y="${top + 88}" style="${font.mono};font-size:13px;letter-spacing:.1em" fill="${color.brand3}">${String(i + 1).padStart(2, '0')} ${n[2].toUpperCase()}</text>
+      ${descs[i].map((l, k) => `<text x="${x + 18}" y="${top + 116 + k * 23}" style="${font.body};font-size:17px" fill="${color.muted}">${esc(l)}</text>`).join('')}
+      <circle cx="${x}" cy="${portY}" r="4.5" fill="${color.bg}" stroke="${color.brand3}" stroke-width="1.5"/>
+      ${i === nodes.length - 1 ? '' : `<circle cx="${x + nw}" cy="${portY}" r="4.5" fill="${color.brand3}"/>`}
+    </g>${wire}`
+  }).join('')
+
+  const body = `${sectionLabel('03', 'Automatización')}
+  <g transform="translate(${W - 56 - madeW} 42)">
+    <rect width="${madeW}" height="32" rx="16" fill="${color.bg}" stroke="${color.line}"/>
+    ${glyph('make', 16, 7, 18)}
+    <text x="42" y="21" style="${font.mono};font-size:14px" fill="${color.lilac}">hecho en Make</text>
+  </g>
+  <text x="56" y="152" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">${title}<tspan x="${56 + titleW}" ${outline(46, 1.4)}>repetitivo.</tspan></text>
+  ${sub.map((l, k) => `<text x="56" y="${198 + k * 30}" style="${font.body};font-size:20px" fill="${color.muted}">${esc(l)}</text>`).join('')}
+  ${cards}
+  <text x="56" y="${H - 40}" style="${font.mono};font-size:14px" fill="${color.muted}">APIs de Telegram, Groq, Gemini y Notion <tspan fill="${color.brand3}">·</tspan> también con n8n y modelos locales en Ollama</text>`
+
+  save('automation.svg', frame({
+    h: H,
+    title: 'Automatización: automatizo lo repetitivo',
+    desc: `Flujo hecho en Make: ${nodes.map((n, i) => `${i + 1}. ${n[1]}, ${n[2].toLowerCase()}: ${n[3]}.`).join(' ')} Usa las APIs de Telegram, Groq, Gemini y Notion. También trabajo con n8n y modelos locales en Ollama.`,
+    fonts: ['display', 'body', 'mono'],
+    css: `.rise{animation:rise .6s ${ease} both}@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion: no-preference){.wire{stroke-dasharray:5 5;animation:wire 1s linear infinite}}
+@keyframes wire{to{stroke-dashoffset:-10}}`,
+    body,
   }))
 }
 
@@ -251,7 +311,7 @@ const outline = (size, sw = 1.6) =>
   const titleW = measure('display', 'Siempre en', 54) * 0.98 + 6
   const sub = wrap(measure, 'body', 'Todavía me falta mucho por aprender, y esa es la mejor parte: cada proyecto sale un poco mejor que el anterior.', 20, 480)
 
-  const body = `${sectionLabel('03', 'Changelog')}
+  const body = `${sectionLabel('04', 'Changelog')}
   <line x1="${tx}" y1="${128}" x2="${tx}" y2="${H - 40}" stroke="${color.line}"/>
   <text x="${left}" y="170" style="${font.display};font-size:54px;letter-spacing:-.02em" fill="${color.text}">Siempre en<tspan x="${left + titleW}" ${outline(54, 1.5)}>beta.</tspan></text>
   ${sub.map((l, k) => `<text x="${left}" y="${222 + k * 30}" style="${font.body};font-size:20px" fill="${color.muted}">${esc(l)}</text>`).join('')}
@@ -287,7 +347,7 @@ const outline = (size, sw = 1.6) =>
     { type: 'tine', x: 0, y: 130, angle: 0, z: 45, u: 0.993 },
     { type: 'wave', amp: 12, wave: 70 },
   ], 780, 'contact')}
-  ${sectionLabel('05', 'Contacto')}
+  ${sectionLabel('06', 'Contacto')}
   <text x="56" y="150" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">¿Una vacante, un proyecto</text>
   <text x="56" y="206" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">o ganas de hablar de <tspan ${outline(46, 1.4)}>diseño?</tspan></text>
   <text x="56" y="252" style="${font.body};font-size:20px" fill="${color.muted}">Escríbeme, respondo rápido. Los enlaces están justo debajo.</text>`
@@ -321,5 +381,5 @@ button('btn-email.svg', 'jjbetacode@gmail.com',
   `<rect x="0" y="2" width="22" height="17" rx="3" fill="none" stroke="${color.lilac}" stroke-width="1.7"/><path d="M1.5 4.5L11 11.5L20.5 4.5" fill="none" stroke="${color.lilac}" stroke-width="1.7" stroke-linejoin="round"/>`,
   true, 'Escribir a jjbetacode@gmail.com')
 button('btn-instagram.svg', '@jnz_jero',
-  `<path transform="scale(${22 / 24})" d="${icon('instagram')}" fill="${color.lilac}"/>`,
+  glyph('instagram', 0, 0),
   false, 'Instagram @jnz_jero')

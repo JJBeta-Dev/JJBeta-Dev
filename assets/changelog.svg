@@ -22,7 +22,7 @@
 <g clip-path="url(#panel)">
   <rect width="1200" height="445" fill="#07050A"/>
   <text x="56" y="64" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px;letter-spacing:.04em">
-    <tspan fill="#8A5FE0">03</tspan><tspan fill="#A495B3" dx="10">/  Changelog</tspan>
+    <tspan fill="#8A5FE0">04</tspan><tspan fill="#A495B3" dx="10">/  Changelog</tspan>
   </text>
   <line x1="584" y1="128" x2="584" y2="405" stroke="#241631"/>
   <text x="56" y="170" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:54px;letter-spacing:-.02em" fill="#F4EFFA">Siempre en<tspan x="355.75892" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:54px;letter-spacing:-.02em" fill="none" stroke="#C9B6FF" stroke-width="1.5" stroke-linejoin="round">beta.</tspan></text>

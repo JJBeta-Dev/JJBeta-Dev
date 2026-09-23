@@ -48,6 +48,22 @@ export function icon(slug) {
   return raw.match(/<path d="([^"]+)"/)[1]
 }
 
+// Íconos que no existen en Simple Icons, dibujados en trazo (viewBox 24).
+const strokeGlyphs = {
+  pencil: '<path d="M4 20l1.1-4.4L16.2 4.5a2.1 2.1 0 0 1 3 0l.3.3a2.1 2.1 0 0 1 0 3L8.4 18.9Z"/><path d="M14.5 6.2l3.3 3.3M4 20l4.4-1.1"/>',
+  zustand: '<circle cx="6" cy="6.5" r="2.6"/><circle cx="18" cy="6.5" r="2.6"/><circle cx="12" cy="13.5" r="7.5"/><circle cx="9.3" cy="12.2" r=".6"/><circle cx="14.7" cy="12.2" r=".6"/><path d="M10.5 16.2q1.5 1.3 3 0"/>',
+  groq: '<circle cx="12" cy="10" r="5.5"/><path d="M17.5 10v5.5a5.5 5.5 0 0 1-9.4 3.9"/>',
+}
+
+/** Ícono a size px con origen arriba a la izquierda. */
+export function glyph(slug, x, y, size = 22, fill = color.lilac, opacity = 1) {
+  const t = `translate(${x} ${y}) scale(${size / 24})`
+  if (strokeGlyphs[slug]) {
+    return `<g transform="${t}" opacity="${opacity}" fill="none" stroke="${fill}" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round">${strokeGlyphs[slug]}</g>`
+  }
+  return `<path transform="${t}" opacity="${opacity}" d="${icon(slug)}" fill="${fill}"/>`
+}
+
 export const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 

@@ -15,8 +15,8 @@ export const color = {
   cell: '#140C1B',
   brand: '#390050',
   brand2: '#5A1A7E',
-  brand3: '#8E55BD',
-  lilac: '#D9C2F5',
+  brand3: '#8A5FE0',
+  lilac: '#C9B6FF',
   text: '#F4EFFA',
   muted: '#A495B3',
 }
@@ -26,14 +26,12 @@ export const ease = 'cubic-bezier(.2,.7,.2,1)'
 const fontFiles = {
   display: ['Bricolage', 700, 'normal', 'bricolage-700.woff'],
   body: ['Bricolage', 500, 'normal', 'bricolage-500.woff'],
-  serif: ['Instrument', 400, 'italic', 'instrument-serif-italic.woff'],
   mono: ['JetBrains', 500, 'normal', 'jetbrains-mono-500.woff'],
 }
 
 export const font = {
   display: "font-family:Bricolage,system-ui,sans-serif;font-weight:700",
   body: "font-family:Bricolage,system-ui,sans-serif;font-weight:500",
-  serif: "font-family:Instrument,Georgia,serif;font-style:italic;font-weight:400",
   mono: "font-family:JetBrains,ui-monospace,monospace;font-weight:500",
 }
 
@@ -96,103 +94,87 @@ export function sectionLabel(index, label, x = 56, y = 64) {
   </text>`
 }
 
-// ---------- Ornamento: loza pintada a mano de El Carmen de Viboral ----------
-
-// Pseudoaleatorio determinista: el trazo "a mano" sale igual en cada build.
-export function rng(seed) {
-  let s = seed >>> 0
-  return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296)
-}
+// ---------- Ornamento: suminagashi (marmolado de tinta sobre agua) ----------
 
 const pt = (x, y) => `${x.toFixed(1)} ${y.toFixed(1)}`
 
-// Pétalo como una pincelada: ancho en el medio, punta redondeada.
-export function petal(cx, cy, angle, len, wid, r0 = 6) {
-  const dx = Math.cos(angle), dy = Math.sin(angle)
-  const px = -dy, py = dx
-  const bx = cx + dx * r0, by = cy + dy * r0
-  const tx = cx + dx * len, ty = cy + dy * len
-  const c1 = [bx + dx * len * 0.35 + px * wid, by + dy * len * 0.35 + py * wid]
-  const c2 = [tx - dx * len * 0.12 + px * wid * 0.75, ty - dy * len * 0.12 + py * wid * 0.75]
-  const c3 = [tx - dx * len * 0.12 - px * wid * 0.75, ty - dy * len * 0.12 - py * wid * 0.75]
-  const c4 = [bx + dx * len * 0.35 - px * wid, by + dy * len * 0.35 - py * wid]
-  return `M${pt(bx, by)}C${pt(...c1)} ${pt(...c2)} ${pt(tx, ty)}C${pt(...c3)} ${pt(...c4)} ${pt(bx, by)}Z`
-}
-
-export function leaf(x, y, angle, len, wid) {
-  const dx = Math.cos(angle), dy = Math.sin(angle)
-  const px = -dy, py = dx
-  const tx = x + dx * len, ty = y + dy * len
-  const m = [x + dx * len * 0.5, y + dy * len * 0.5]
-  return {
-    shape: `M${pt(x, y)}Q${pt(m[0] + px * wid, m[1] + py * wid)} ${pt(tx, ty)}Q${pt(m[0] - px * wid, m[1] - py * wid)} ${pt(x, y)}Z`,
-    rib: `M${pt(x, y)}L${pt(x + dx * len * 0.82, y + dy * len * 0.82)}`,
+// Inserta puntos donde una gota estiró demasiado el anillo, para que no
+// aparezcan tramos rectos.
+function refine(pts, max = 6) {
+  const out = []
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i], q = pts[(i + 1) % pts.length]
+    out.push(p)
+    const n = Math.floor(Math.hypot(q[0] - p[0], q[1] - p[1]) / max)
+    for (let k = 1; k <= n; k++) {
+      const t = k / (n + 1)
+      out.push([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t])
+    }
   }
+  return out
 }
 
 /**
- * Flor de cinco pétalos con centro punteado.
- * @returns {string} grupo SVG con clase para animar la "pintada".
+ * Marmolado con la física real del suminagashi: cada gota nueva de radio r
+ * empuja los anillos existentes a c + (p - c) * sqrt(1 + r² / |p - c|²).
+ * Después, una onda suave "peina" el agua como un soplo.
+ * @param {{x:number,y:number,drops:number,r:number}[]} sources
+ * @param {{amp?:number, wave?:number}} [flow]
+ * @returns {{ring:number, d:string}[]} anillos del más viejo al más nuevo
  */
-export function flower(cx, cy, size, rot, seed, delay = 0, cls = 'paint') {
-  const rand = rng(seed)
-  const petals = Array.from({ length: 5 }, (_, i) => {
-    const a = rot + (i * Math.PI * 2) / 5 + (rand() - 0.5) * 0.12
-    const len = size * (0.92 + rand() * 0.16)
-    return `<path d="${petal(cx, cy, a, len, size * 0.36)}"/>`
-  }).join('')
-  const dots = Array.from({ length: 5 }, (_, i) => {
-    const a = rot + Math.PI / 5 + (i * Math.PI * 2) / 5
-    return `<circle cx="${(cx + Math.cos(a) * size * 0.52).toFixed(1)}" cy="${(cy + Math.sin(a) * size * 0.52).toFixed(1)}" r="${(size * 0.035 + 1).toFixed(1)}"/>`
-  }).join('')
-  return `<g class="${cls}" style="animation-delay:${delay}ms">
-    <g fill="${color.brand}" stroke="${color.brand3}" stroke-width="1.6" stroke-linejoin="round">${petals}</g>
-    <g fill="${color.brand3}" opacity=".9">${dots}</g>
-    <circle cx="${cx}" cy="${cy}" r="${(size * 0.14).toFixed(1)}" fill="${color.bg}" stroke="${color.lilac}" stroke-width="1.6"/>
-    <circle cx="${cx}" cy="${cy}" r="${(size * 0.05).toFixed(1)}" fill="${color.lilac}"/>
-  </g>`
+export function marble(sources, { amp = 14, wave = 110 } = {}) {
+  const curves = []
+  const N = 180
+  for (const s of sources) {
+    for (let i = 0; i < s.drops; i++) {
+      const r2 = s.r * s.r
+      for (const c of curves) {
+        for (const p of c.pts) {
+          const dx = p[0] - s.x, dy = p[1] - s.y
+          const k = Math.sqrt(1 + r2 / (dx * dx + dy * dy))
+          p[0] = s.x + dx * k
+          p[1] = s.y + dy * k
+        }
+        c.pts = refine(c.pts)
+      }
+      const pts = Array.from({ length: N }, (_, j) => {
+        const a = (j / N) * Math.PI * 2
+        return [s.x + Math.cos(a) * s.r, s.y + Math.sin(a) * s.r]
+      })
+      curves.push({ ring: i, pts })
+    }
+  }
+  return curves.map((c) => {
+    const pts = c.pts.map(([x, y]) => [x + amp * Math.sin(y / wave), y + amp * 0.6 * Math.sin(x / (wave * 1.4))])
+    return { ring: c.ring, d: `M${pts.map((p) => pt(...p)).join('L')}Z` }
+  })
 }
 
-export function leafPair(x, y, angle, len, delay = 0) {
-  const a = leaf(x, y, angle - 0.55, len, len * 0.3)
-  const b = leaf(x, y, angle + 0.55, len * 0.85, len * 0.28)
-  return `<g class="paint" style="animation-delay:${delay}ms">
-    <path d="${a.shape}" fill="${color.brand}" stroke="${color.brand3}" stroke-width="1.4"/>
-    <path d="${b.shape}" fill="${color.brand}" stroke="${color.brand3}" stroke-width="1.4"/>
-    <path d="${a.rib}" stroke="${color.brand3}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <path d="${b.rib}" stroke="${color.brand3}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  </g>`
-}
-
-// Borde de plato: dos aros y arcos repetidos, como el ribete de la loza.
-export function plateRim(cx, cy, r, count = 40) {
-  const arches = Array.from({ length: count }, (_, i) => {
-    const a0 = (i / count) * Math.PI * 2
-    const a1 = ((i + 1) / count) * Math.PI * 2
-    const ri = r - 16
-    const x0 = cx + Math.cos(a0) * ri, y0 = cy + Math.sin(a0) * ri
-    const x1 = cx + Math.cos(a1) * ri, y1 = cy + Math.sin(a1) * ri
-    const am = (a0 + a1) / 2
-    const qx = cx + Math.cos(am) * (r - 2), qy = cy + Math.sin(am) * (r - 2)
-    const dx = cx + Math.cos(am) * (r - 24), dy = cy + Math.sin(am) * (r - 24)
-    return `<path d="M${pt(x0, y0)}Q${pt(qx, qy)} ${pt(x1, y1)}"/><circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="1.8" stroke="none" fill="${color.brand3}"/>`
+// Anillos en outline: alternan tinta fuerte y agua, como el papel real.
+export function suminagashi(sources, flow, fadeFromX, id) {
+  const rings = marble(sources, flow)
+  const paths = rings.map((c, i) => {
+    const strong = c.ring % 2 === 0
+    const accent = c.ring % 5 === 4
+    const stroke = accent ? color.lilac : strong ? color.brand3 : color.brand2
+    const op = accent ? 0.55 : strong ? 0.8 : 0.45
+    const sw = strong ? 1.5 : 1.1
+    return `<path class="ink" style="animation-delay:${(rings.length - i) * 45}ms" d="${c.d}" fill="none" stroke="${stroke}" stroke-opacity="${op}" stroke-width="${sw}"/>`
   }).join('')
-  return `<g fill="none" stroke="${color.brand2}" stroke-width="1.4">
-    <circle class="rim" cx="${cx}" cy="${cy}" r="${r + 6}" stroke="${color.brand2}"/>
-    <circle class="rim" cx="${cx}" cy="${cy}" r="${r - 34}" stroke="${color.line}"/>
-    <g class="wheel" style="transform-origin:${cx}px ${cy}px">${arches}</g>
-  </g>`
+  return `
+  <linearGradient id="${id}-fade" x1="${fadeFromX}" x2="${fadeFromX + 260}" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/>
+  </linearGradient>
+  <mask id="${id}-mask"><rect width="100%" height="100%" fill="url(#${id}-fade)"/></mask>
+  <g mask="url(#${id}-mask)"><g class="drift">${paths}</g></g>`
 }
 
-// CSS de las animaciones del ornamento; el estado final es el estado base,
-// así que con reduced-motion todo queda visible y quieto.
+// El estado final es el base: con reduced-motion todo queda visible y quieto.
 export const ornamentCss = `
-.paint{transform-box:fill-box;transform-origin:center;animation:paint .9s ${ease} both}
-@keyframes paint{from{opacity:0;transform:scale(.6) rotate(-8deg)}}
-.rim{stroke-dasharray:2200;animation:rim 2.4s ${ease} both}
-@keyframes rim{from{stroke-dashoffset:2200}}
-.wheel{animation:wheel 140s linear infinite}
-@keyframes wheel{to{transform:rotate(360deg)}}
+.ink{transform-box:view-box;animation:ink 1.4s ${ease} both}
+@keyframes ink{from{opacity:0}}
+.drift{animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-10px,6px)}}
 `
 
 // ---------- Medición de texto (solo en build local) ----------

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import {
   W, color, font, ease, esc, frame, sectionLabel, icon, fontFace,
-  flower, leafPair, plateRim, ornamentCss, measurer, wrap,
+  suminagashi, ornamentCss, measurer, wrap,
 } from './lib.mjs'
 
 const out = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets')
@@ -14,44 +14,18 @@ const save = (name, svg) => {
   console.log(`assets/${name}  ${(svg.length / 1024).toFixed(0)} KB`)
 }
 
-// El plato de loza que se repite en portada y contacto.
-function plate(cx, cy, r, scale = 1, baseDelay = 0) {
-  const s = (v) => v * scale
-  const X = (v) => cx + s(v), Y = (v) => cy + s(v)
-  return `
-  <g>
-    ${plateRim(cx, cy, r)}
-    <g fill="none" stroke="${color.brand3}" stroke-width="2.2" stroke-linecap="round" class="stem">
-      <path d="M${X(-200)} ${Y(190)}C${X(-160)} ${Y(130)} ${X(-140)} ${Y(80)} ${X(-90)} ${Y(0)}"/>
-      <path d="M${X(-90)} ${Y(0)}C${X(-50)} ${Y(-50)} ${X(-20)} ${Y(-80)} ${X(15)} ${Y(-120)}"/>
-      <path d="M${X(-90)} ${Y(0)}C${X(-50)} ${Y(50)} ${X(-20)} ${Y(100)} ${X(0)} ${Y(135)}"/>
-      <path d="M${X(-150)} ${Y(-70)}c${s(-10)} ${s(-2)} ${s(-14)} ${s(8)} ${s(-8)} ${s(13)}c${s(6)} ${s(5)} ${s(14)} ${s(-2)} ${s(10)} ${s(-9)}"/>
-    </g>
-    ${leafPair(X(-150), Y(80), 2.4, s(44), baseDelay + 500)}
-    ${leafPair(X(-40), Y(-60), -2.3, s(36), baseDelay + 650)}
-    ${leafPair(X(-55), Y(80), 0.9, s(40), baseDelay + 700)}
-    ${flower(X(-90), Y(0), s(64), -0.3, 7, baseDelay + 300)}
-    ${flower(X(15), Y(-120), s(44), 0.4, 11, baseDelay + 450)}
-    ${flower(X(0), Y(135), s(36), 0.9, 23, baseDelay + 600)}
-    <g fill="${color.lilac}" class="paint" style="animation-delay:${baseDelay + 800}ms">
-      ${[[-200, -60, 3], [-185, -85, 2.4], [-165, -105, 2], [-140, -120, 2.6], [-112, -128, 2], [-84, -128, 1.6]]
-        .map(([x, y, rr]) => `<circle cx="${X(x)}" cy="${Y(y)}" r="${rr}"/>`).join('')}
-    </g>
-  </g>`
-}
-
-const stemCss = `
-.stem path{stroke-dasharray:420;animation:stem 1.6s ${ease} both}
-@keyframes stem{from{stroke-dashoffset:420}}`
+// Acento de titulares: la misma grotesca, solo en contorno.
+const outline = (size, sw = 1.6) =>
+  `style="${font.display};font-size:${size}px;letter-spacing:-.02em" fill="none" stroke="${color.lilac}" stroke-width="${sw}" stroke-linejoin="round"`
 
 // ---------------------------------------------------------------- portada
 {
   const H = 480
   const x = 56
   const line3 = 'una sola pieza.'
-  const l3size = 84
-  const l3w = measure('serif', line3, l3size)
-  const box = { x: x - 10, y: 356 - l3size * 0.74, w: l3w + 24, h: l3size * 0.98 }
+  const l3size = 78
+  const l3w = measure('display', line3, l3size) * 0.98
+  const box = { x: x - 12, y: 356 - l3size * 0.8, w: l3w + 26, h: l3size * 1.04 }
   const handles = [[box.x, box.y], [box.x + box.w, box.y], [box.x, box.y + box.h], [box.x + box.w, box.y + box.h]]
     .map(([hx, hy]) => `<rect x="${hx - 4.5}" y="${hy - 4.5}" width="9" height="9" fill="${color.bg}" stroke="${color.lilac}" stroke-width="1.5"/>`).join('')
   const dims = `${Math.round(box.w)} × ${Math.round(box.h)}`
@@ -69,7 +43,11 @@ const stemCss = `
   </radialGradient>
   <rect width="${W}" height="${H}" fill="url(#aura)"/>
 
-  ${plate(1160, 250, 270)}
+  ${suminagashi([
+    { x: 1110, y: 235, drops: 30, r: 52 },
+    { x: 985, y: 430, drops: 10, r: 30 },
+    { x: 1190, y: 40, drops: 8, r: 28 },
+  ], { amp: 20, wave: 85 }, 780, 'hero')}
 
   <text x="${x}" y="64" style="${font.mono};font-size:16px;letter-spacing:.04em" fill="${color.muted}">@JJBeta-Dev</text>
   <g transform="translate(${W - 56 - versionW} 42)">
@@ -80,7 +58,7 @@ const stemCss = `
   <text x="${x}" y="134" style="${font.mono};font-size:19px" fill="${color.muted}">Hola, soy Jerónimo Jiménez Betancur —</text>
   <text x="${x}" y="208" style="${font.display};font-size:60px;letter-spacing:-.02em" fill="${color.text}">Diseño interfaces</text>
   <text x="${x}" y="274" style="${font.display};font-size:60px;letter-spacing:-.02em" fill="${color.text}">que se sienten como</text>
-  <text x="${x}" y="356" style="${font.serif};font-size:${l3size}px" fill="${color.lilac}">${line3}</text>
+  <text x="${x}" y="356" ${outline(l3size, 1.8)}>${line3}</text>
 
   <g>
     <rect class="sel" x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" fill="none" stroke="${color.lilac}" stroke-width="1.5"/>
@@ -104,7 +82,7 @@ const stemCss = `
   <text x="${x}" y="438" style="${font.mono};font-size:17px" fill="${color.muted}">UX/UI Designer <tspan fill="${color.brand3}">·</tspan> Front-End Developer <tspan fill="${color.brand3}">·</tspan> El Carmen de Viboral, CO</text>
   `
 
-  const css = `${ornamentCss}${stemCss}
+  const css = `${ornamentCss}
 .sel{stroke-dasharray:${perim};animation:sel 1s ${ease} 1s both}
 @keyframes sel{from{stroke-dashoffset:${perim}}}
 .pop{animation:pop .35s ${ease} both}
@@ -117,8 +95,8 @@ const stemCss = `
   save('hero.svg', frame({
     h: H,
     title: 'Jerónimo Jiménez Betancur — UX/UI Designer y Front-End Developer',
-    desc: 'Portada: "Diseño interfaces que se sienten como una sola pieza." La frase final aparece seleccionada como en Figma, con el cursor de Jero. A la derecha, un plato de loza pintada a mano de El Carmen de Viboral en morado.',
-    fonts: ['display', 'body', 'serif', 'mono'],
+    desc: 'Portada: "Diseño interfaces que se sienten como una sola pieza." La frase final aparece seleccionada como en Figma, con el cursor de Jero. A la derecha, anillos de tinta en morado al estilo suminagashi.',
+    fonts: ['display', 'body', 'mono'],
     css,
     body,
   }))
@@ -169,7 +147,7 @@ const stemCss = `
 // ---------------------------------------------------------------- stack
 {
   const rows = [
-    ['Diseño', [['figma', 'Figma'], ['adobephotoshop', 'Photoshop'], ['affinity', 'Affinity']]],
+    ['Diseño', [['pencil', 'Papel y lápiz'], ['figma', 'Figma'], ['adobephotoshop', 'Photoshop'], ['affinity', 'Affinity']]],
     ['Código', [['html5', 'HTML'], ['css', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'], ['tailwindcss', 'Tailwind CSS']]],
     ['Build y test', [['vite', 'Vite'], ['vitest', 'Vitest'], ['eslint', 'ESLint'], ['npm', 'npm']]],
     ['Flujo', [['git', 'Git'], ['github', 'GitHub'], ['postman', 'Postman'], ['yaak', 'Yaak'], ['warp', 'Warp'], ['zedindustries', 'Zed']]],
@@ -194,7 +172,9 @@ const stemCss = `
     lines.forEach((ln, li) => ln.forEach((it, k) => {
       const iy = cy + li * 44
       parts.push(`<g class="rise" style="animation-delay:${r * 90 + k * 40}ms">
-        <path transform="translate(${it.x} ${iy - 11}) scale(${22 / 24})" d="${icon(it.slug)}" fill="${color.lilac}"/>
+        ${it.slug === 'pencil'
+          ? `<g transform="translate(${it.x} ${iy - 11}) scale(${22 / 24})" fill="none" stroke="${color.lilac}" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M4 20l1.1-4.4L16.2 4.5a2.1 2.1 0 0 1 3 0l.3.3a2.1 2.1 0 0 1 0 3L8.4 18.9Z"/><path d="M14.5 6.2l3.3 3.3M4 20l4.4-1.1"/></g>`
+          : `<path transform="translate(${it.x} ${iy - 11}) scale(${22 / 24})" d="${icon(it.slug)}" fill="${color.lilac}"/>`}
         <text x="${it.x + 32}" y="${iy + 7}" style="${font.body};font-size:20px" fill="${color.text}">${esc(it.name)}</text>
       </g>`)
     }))
@@ -264,12 +244,12 @@ const stemCss = `
   })
   const H = Math.max(y + 24, 400)
   // Resta el letter-spacing de -.02em que opentype no aplica.
-  const titleW = measure('display', 'Siempre en', 54) * 0.98 + 14
+  const titleW = measure('display', 'Siempre en', 54) * 0.98 + 6
   const sub = wrap(measure, 'body', 'Todavía me falta mucho por aprender, y esa es la mejor parte: cada proyecto sale un poco mejor que el anterior.', 20, 480)
 
   const body = `${sectionLabel('03', 'Changelog')}
   <line x1="${tx}" y1="${128}" x2="${tx}" y2="${H - 40}" stroke="${color.line}"/>
-  <text x="${left}" y="170" style="${font.display};font-size:54px;letter-spacing:-.02em" fill="${color.text}">Siempre en<tspan x="${left + titleW}" style="${font.serif};font-size:68px" fill="${color.lilac}">beta.</tspan></text>
+  <text x="${left}" y="170" style="${font.display};font-size:54px;letter-spacing:-.02em" fill="${color.text}">Siempre en<tspan x="${left + titleW}" ${outline(54, 1.5)}>beta.</tspan></text>
   ${sub.map((l, k) => `<text x="${left}" y="${222 + k * 30}" style="${font.body};font-size:20px" fill="${color.muted}">${esc(l)}</text>`).join('')}
   <text x="${left}" y="${H - 44}" style="${font.mono};font-size:15px" fill="${color.muted}"><tspan fill="${color.brand3}">*</tspan> el número de versión es mi edad.</text>
   ${tl.join('')}`
@@ -278,7 +258,7 @@ const stemCss = `
     h: H,
     title: 'Changelog: siempre en beta',
     desc: `Todavía me falta mucho por aprender. ${releases.map((r) => `${r.v} (${r.meta}): ${r.items.join('; ')}.`).join(' ')} El número de versión es mi edad.`,
-    fonts: ['display', 'body', 'serif', 'mono'],
+    fonts: ['display', 'body', 'mono'],
     css: `.ring{transform-box:fill-box;transform-origin:center;animation:ring 2.2s ${ease} infinite}
 @keyframes ring{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(2.6)}}`,
     body,
@@ -287,26 +267,28 @@ const stemCss = `
 
 // ---------------------------------------------------------------- contacto
 {
-  const H = 340
+  const H = 300
   const body = `
-  <radialGradient id="aura" cx="1120" cy="290" r="420" gradientUnits="userSpaceOnUse">
+  <radialGradient id="aura" cx="1110" cy="290" r="420" gradientUnits="userSpaceOnUse">
     <stop offset="0" stop-color="${color.brand}" stop-opacity=".5"/>
     <stop offset="1" stop-color="${color.brand}" stop-opacity="0"/>
   </radialGradient>
   <rect width="${W}" height="${H}" fill="url(#aura)"/>
-  ${plate(1120, 290, 230, 0.8)}
+  ${suminagashi([
+    { x: 1100, y: 290, drops: 22, r: 44 },
+    { x: 975, y: 320, drops: 6, r: 26 },
+  ], { amp: 16, wave: 80 }, 800, 'contact')}
   ${sectionLabel('05', 'Contacto')}
   <text x="56" y="150" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">¿Una vacante, un proyecto</text>
-  <text x="56" y="206" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">o ganas de hablar de <tspan style="${font.serif};font-size:58px" fill="${color.lilac}">diseño?</tspan></text>
-  <text x="56" y="252" style="${font.body};font-size:20px" fill="${color.muted}">Escríbeme, respondo rápido. Los enlaces están justo debajo.</text>
-  <text x="56" y="${H - 44}" style="${font.mono};font-size:15px" fill="${color.muted}">Hecho a mano en El Carmen de Viboral, tierra de la loza pintada.</text>`
+  <text x="56" y="206" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">o ganas de hablar de <tspan ${outline(46, 1.4)}>diseño?</tspan></text>
+  <text x="56" y="252" style="${font.body};font-size:20px" fill="${color.muted}">Escríbeme, respondo rápido. Los enlaces están justo debajo.</text>`
 
   save('contact.svg', frame({
     h: H,
     title: 'Contacto',
-    desc: '¿Una vacante, un proyecto o ganas de hablar de diseño? Escríbeme, respondo rápido. Hecho a mano en El Carmen de Viboral, tierra de la loza pintada.',
-    fonts: ['display', 'body', 'serif', 'mono'],
-    css: `${ornamentCss}${stemCss}`,
+    desc: '¿Una vacante, un proyecto o ganas de hablar de diseño? Escríbeme, respondo rápido.',
+    fonts: ['display', 'body', 'mono'],
+    css: ornamentCss,
     body,
   }))
 }

@@ -21,12 +21,12 @@
 <g clip-path="url(#panel)">
   <rect width="1200" height="434" fill="#07050A"/>
   <text x="56" y="64" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px;letter-spacing:.04em">
-    <tspan fill="#8E55BD">01</tspan><tspan fill="#A495B3" dx="10">/  Cómo trabajo</tspan>
+    <tspan fill="#8A5FE0">01</tspan><tspan fill="#A495B3" dx="10">/  Cómo trabajo</tspan>
   </text>
     <g class="rise" style="animation-delay:0ms">
       <g transform="translate(56 110)">
         <rect width="158.39999999999998" height="32" rx="8" fill="#07050A" stroke="#241631"/>
-        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#D9C2F5">:focus-visible</text>
+        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#C9B6FF">:focus-visible</text>
       </g>
       <text x="56" y="192" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em" fill="#F4EFFA">Accesible por</text><text x="56" y="230" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em" fill="#F4EFFA">defecto</text>
       <text x="56" y="270" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">Contraste real, foco visible y</text><text x="56" y="300" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">todo usable con teclado. Si</text><text x="56" y="330" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">alguien no puede usarlo, no está</text><text x="56" y="360" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">terminado.</text>
@@ -34,7 +34,7 @@
     <g class="rise" style="animation-delay:120ms">
       <g transform="translate(454.6666666666667 110)">
         <rect width="81.6" height="32" rx="8" fill="#07050A" stroke="#241631"/>
-        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#D9C2F5">&lt;main&gt;</text>
+        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#C9B6FF">&lt;main&gt;</text>
       </g>
       <text x="454.6666666666667" y="192" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em" fill="#F4EFFA">Semántica que se</text><text x="454.6666666666667" y="230" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em" fill="#F4EFFA">entiende</text>
       <text x="454.6666666666667" y="270" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">HTML con sentido para lectores</text><text x="454.6666666666667" y="300" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">de pantalla y buscadores. El SEO</text><text x="454.6666666666667" y="330" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">empieza en el marcado, no al</text><text x="454.6666666666667" y="360" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">final.</text>
@@ -42,7 +42,7 @@
     <g class="rise" style="animation-delay:240ms">
       <g transform="translate(817.3333333333334 110)">
         <rect width="81.6" height="32" rx="8" fill="#07050A" stroke="#241631"/>
-        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#D9C2F5">@theme</text>
+        <text x="12" y="21" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px" fill="#C9B6FF">@theme</text>
       </g>
       <text x="817.3333333333334" y="192" style="font-family:Bricolage,system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em" fill="#F4EFFA">Una sola pieza</text>
       <text x="817.3333333333334" y="270" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">Tokens compartidos y ritmo</text><text x="817.3333333333334" y="300" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">constante: cada sección</text><text x="817.3333333333334" y="330" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">conversa con la siguiente. Nada</text><text x="817.3333333333334" y="360" style="font-family:Bricolage,system-ui,sans-serif;font-weight:500;font-size:20px" fill="#A495B3">flota suelto.</text>

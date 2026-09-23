@@ -46,10 +46,10 @@ const best = days.reduce((a, b) => (b.contributionCount > a.contributionCount ? 
 
 const levels = {
   NONE: color.cell,
-  FIRST_QUARTILE: '#4A0F6A',
-  SECOND_QUARTILE: '#6E2A99',
-  THIRD_QUARTILE: '#A26BD0',
-  FOURTH_QUARTILE: '#E3CCFA',
+  FIRST_QUARTILE: '#43106A',
+  SECOND_QUARTILE: '#62309E',
+  THIRD_QUARTILE: '#9068E6',
+  FOURTH_QUARTILE: '#D8CCFF',
 }
 
 const cell = 15, gap = 4, step = cell + gap

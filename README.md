@@ -15,7 +15,7 @@ Soy **Jerónimo Jiménez Betancur**, pero en código me conocen como **JJBeta**.
 </p>
 
 <p align="center">
-  <img src="assets/stack.svg" width="100%" alt="Herramientas. Diseño: papel y lápiz primero, luego Figma, Photoshop y Affinity. Código: HTML, CSS, JavaScript, TypeScript, React y Tailwind CSS. Calidad: Vite, Vitest, ESLint y npm. Flujo: Git, GitHub, Postman, Yaak, Warp y Zed. Siguiente: Next.js, en progreso.">
+  <img src="assets/stack.svg" width="100%" alt="Herramientas. Diseño: papel y lápiz primero, luego Figma y Photoshop. Código: HTML, CSS, JavaScript, TypeScript, React y Tailwind CSS. Flujo: Vite, Vitest, Git, Yaak y Zed. Siguiente: Next.js, en progreso.">
 </p>
 
 <p align="center">

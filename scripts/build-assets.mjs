@@ -44,10 +44,15 @@ const outline = (size, sw = 1.6) =>
   <rect width="${W}" height="${H}" fill="url(#aura)"/>
 
   ${suminagashi([
-    { x: 1110, y: 235, drops: 30, r: 52 },
-    { x: 985, y: 430, drops: 10, r: 30 },
-    { x: 1190, y: 40, drops: 8, r: 28 },
-  ], { amp: 20, wave: 85 }, 780, 'hero')}
+    { x: 1100, y: 235, drops: 26, r: 52 },
+    { x: 985, y: 420, drops: 9, r: 30 },
+    { x: 1180, y: 50, drops: 7, r: 28 },
+  ], [
+    { type: 'swirl', x: 1090, y: 245, s: 1.5, falloff: 170 },
+    { type: 'tine', x: 0, y: 310, angle: Math.PI, z: 85, u: 0.993 },
+    { type: 'tine', x: 0, y: 130, angle: 0, z: 55, u: 0.993 },
+    { type: 'wave', amp: 12, wave: 70 },
+  ], 760, 'hero')}
 
   <text x="${x}" y="64" style="${font.mono};font-size:16px;letter-spacing:.04em" fill="${color.muted}">@JJBeta-Dev</text>
   <g transform="translate(${W - 56 - versionW} 42)">
@@ -147,10 +152,9 @@ const outline = (size, sw = 1.6) =>
 // ---------------------------------------------------------------- stack
 {
   const rows = [
-    ['Diseño', [['pencil', 'Papel y lápiz'], ['figma', 'Figma'], ['adobephotoshop', 'Photoshop'], ['affinity', 'Affinity']]],
+    ['Diseño', [['pencil', 'Papel y lápiz'], ['figma', 'Figma'], ['adobephotoshop', 'Photoshop']]],
     ['Código', [['html5', 'HTML'], ['css', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'], ['tailwindcss', 'Tailwind CSS']]],
-    ['Build y test', [['vite', 'Vite'], ['vitest', 'Vitest'], ['eslint', 'ESLint'], ['npm', 'npm']]],
-    ['Flujo', [['git', 'Git'], ['github', 'GitHub'], ['postman', 'Postman'], ['yaak', 'Yaak'], ['warp', 'Warp'], ['zedindustries', 'Zed']]],
+    ['Flujo', [['vite', 'Vite'], ['vitest', 'Vitest'], ['git', 'Git'], ['yaak', 'Yaak'], ['zedindustries', 'Zed']]],
   ]
   const x0 = 232
   const maxX = W - 56
@@ -275,9 +279,14 @@ const outline = (size, sw = 1.6) =>
   </radialGradient>
   <rect width="${W}" height="${H}" fill="url(#aura)"/>
   ${suminagashi([
-    { x: 1100, y: 290, drops: 22, r: 44 },
-    { x: 975, y: 320, drops: 6, r: 26 },
-  ], { amp: 16, wave: 80 }, 800, 'contact')}
+    { x: 1110, y: 250, drops: 22, r: 44 },
+    { x: 1000, y: 300, drops: 7, r: 26 },
+  ], [
+    { type: 'swirl', x: 1100, y: 255, s: 1.4, falloff: 150 },
+    { type: 'tine', x: 0, y: 280, angle: Math.PI, z: 75, u: 0.993 },
+    { type: 'tine', x: 0, y: 130, angle: 0, z: 45, u: 0.993 },
+    { type: 'wave', amp: 12, wave: 70 },
+  ], 780, 'contact')}
   ${sectionLabel('05', 'Contacto')}
   <text x="56" y="150" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">¿Una vacante, un proyecto</text>
   <text x="56" y="206" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">o ganas de hablar de <tspan ${outline(46, 1.4)}>diseño?</tspan></text>

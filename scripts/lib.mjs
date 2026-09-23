@@ -117,12 +117,15 @@ function refine(pts, max = 6) {
 /**
  * Marmolado con la física real del suminagashi: cada gota nueva de radio r
  * empuja los anillos existentes a c + (p - c) * sqrt(1 + r² / |p - c|²).
- * Después, una onda suave "peina" el agua como un soplo.
+ * Después se "sopla" el agua con operaciones que le dan movimiento:
+ * - swirl: remolino que gira más cerca del centro.
+ * - tine: peine que arrastra la tinta a lo largo de una línea.
+ * - wave: ondulación suave de toda la superficie.
  * @param {{x:number,y:number,drops:number,r:number}[]} sources
- * @param {{amp?:number, wave?:number}} [flow]
+ * @param {object[]} ops
  * @returns {{ring:number, d:string}[]} anillos del más viejo al más nuevo
  */
-export function marble(sources, { amp = 14, wave = 110 } = {}) {
+export function marble(sources, ops = []) {
   const curves = []
   const N = 180
   for (const s of sources) {
@@ -144,37 +147,75 @@ export function marble(sources, { amp = 14, wave = 110 } = {}) {
       curves.push({ ring: i, pts })
     }
   }
-  return curves.map((c) => {
-    const pts = c.pts.map(([x, y]) => [x + amp * Math.sin(y / wave), y + amp * 0.6 * Math.sin(x / (wave * 1.4))])
-    return { ring: c.ring, d: `M${pts.map((p) => pt(...p)).join('L')}Z` }
-  })
+  for (const op of ops) {
+    for (const c of curves) {
+      c.pts = refine(c.pts.map((p) => move(op, p)))
+    }
+  }
+  return curves.map((c) => ({ ring: c.ring, d: toPath(c.pts) }))
+}
+
+function move(op, [x, y]) {
+  if (op.type === 'swirl') {
+    const dx = x - op.x, dy = y - op.y
+    const a = op.s * Math.exp(-Math.hypot(dx, dy) / op.falloff)
+    const cos = Math.cos(a), sin = Math.sin(a)
+    return [op.x + dx * cos - dy * sin, op.y + dx * sin + dy * cos]
+  }
+  if (op.type === 'tine') {
+    const mx = Math.cos(op.angle), my = Math.sin(op.angle)
+    const d = Math.abs((x - op.x) * -my + (y - op.y) * mx)
+    const k = op.z * op.u ** d
+    return [x + k * mx, y + k * my]
+  }
+  return [x + op.amp * Math.sin(y / op.wave), y + op.amp * 0.6 * Math.sin(x / (op.wave * 1.4))]
+}
+
+// Descarta puntos casi pegados para que el SVG no pese de más.
+function toPath(pts) {
+  const out = [pts[0]]
+  for (const p of pts) {
+    const q = out.at(-1)
+    if (Math.hypot(p[0] - q[0], p[1] - q[1]) >= 3) out.push(p)
+  }
+  return `M${out.map((p) => pt(...p)).join('L')}Z`
 }
 
 // Anillos en outline: alternan tinta fuerte y agua, como el papel real.
-export function suminagashi(sources, flow, fadeFromX, id) {
-  const rings = marble(sources, flow)
-  const paths = rings.map((c, i) => {
-    const strong = c.ring % 2 === 0
+// Las bandas pares e impares se deslizan en sentidos opuestos y por las
+// líneas de acento corre la tinta.
+export function suminagashi(sources, ops, fadeFromX, id) {
+  const rings = marble(sources, ops)
+  const layer = (parity) => rings.map((c, i) => {
+    if (c.ring % 2 !== parity) return ''
+    const strong = parity === 0
     const accent = c.ring % 5 === 4
     const stroke = accent ? color.lilac : strong ? color.brand3 : color.brand2
-    const op = accent ? 0.55 : strong ? 0.8 : 0.45
+    const op = accent ? 0.6 : strong ? 0.8 : 0.45
     const sw = strong ? 1.5 : 1.1
-    return `<path class="ink" style="animation-delay:${(rings.length - i) * 45}ms" d="${c.d}" fill="none" stroke="${stroke}" stroke-opacity="${op}" stroke-width="${sw}"/>`
+    return `<path class="${accent ? 'ink run' : 'ink'}" style="animation-delay:${(rings.length - i) * 40}ms" d="${c.d}" fill="none" stroke="${stroke}" stroke-opacity="${op}" stroke-width="${sw}"/>`
   }).join('')
   return `
-  <linearGradient id="${id}-fade" x1="${fadeFromX}" x2="${fadeFromX + 260}" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+  <linearGradient id="${id}-fade" x1="${fadeFromX}" x2="${fadeFromX + 240}" y1="0" y2="0" gradientUnits="userSpaceOnUse">
     <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/>
   </linearGradient>
   <mask id="${id}-mask"><rect width="100%" height="100%" fill="url(#${id}-fade)"/></mask>
-  <g mask="url(#${id}-mask)"><g class="drift">${paths}</g></g>`
+  <g mask="url(#${id}-mask)">
+    <g class="flow-a">${layer(0)}</g>
+    <g class="flow-b">${layer(1)}</g>
+  </g>`
 }
 
 // El estado final es el base: con reduced-motion todo queda visible y quieto.
 export const ornamentCss = `
-.ink{transform-box:view-box;animation:ink 1.4s ${ease} both}
+.ink{animation:ink 1.4s ${ease} both}
+@media (prefers-reduced-motion: no-preference){.run{stroke-dasharray:120 70;animation:ink 1.4s ${ease} both,run 16s linear infinite}}
 @keyframes ink{from{opacity:0}}
-.drift{animation:drift 18s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(-10px,6px)}}
+@keyframes run{to{stroke-dashoffset:-760}}
+.flow-a{animation:flowa 9s ease-in-out infinite alternate}
+.flow-b{animation:flowb 12s ease-in-out infinite alternate}
+@keyframes flowa{to{transform:translate(-16px,7px)}}
+@keyframes flowb{to{transform:translate(12px,-6px)}}
 `
 
 // ---------- Medición de texto (solo en build local) ----------

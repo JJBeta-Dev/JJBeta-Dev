@@ -112,7 +112,12 @@ const outline = (size, sw = 1.6) =>
 // hasta formar JJBeta. Ciclo en bucle con un "deshacer" rápido al final.
 {
   const H = 460
-  const T = 12 // segundos por ciclo
+  // Línea de tiempo en segundos: la historia dura ~4.5 s y el resultado
+  // se queda quieto casi 10 s para poder leerlo antes del "deshacer".
+  const T = 15
+  const HOLD = 14.1 // empieza el deshacer
+  const UNDO = 14.7 // todo vuelve al inicio
+  const pct = (sec) => +((sec / T) * 100).toFixed(2)
   const x0 = 56
   const s1 = 64 // nombre completo
   const s2 = 124 // JJBeta
@@ -136,7 +141,7 @@ const outline = (size, sw = 1.6) =>
   const jjW = measure('display', 'JJBeta', s2)
 
   // Fotogramas en porcentaje del ciclo.
-  const sel = [[8, 14], [18, 24], [28, 34]]
+  const sel = [[0.4, 0.9], [1.1, 1.6], [1.8, 2.3]]
   const css = []
   const kf = (name, frames) => css.push(`@keyframes ${name}{${frames}}`)
   const anim = (cls, name) => css.push(`.${cls}{animation:${name} ${T}s cubic-bezier(.65,0,.35,1) infinite}`)
@@ -145,8 +150,8 @@ const outline = (size, sw = 1.6) =>
     const bx = p.x - 7, by = y1 - s1 * 0.8, bw = p.w + 14, bh = s1 * 1.04
     const per = Math.ceil(2 * (bw + bh))
     const [a, b] = sel[i]
-    kf(`box${i}`, `0%,${a}%{stroke-dashoffset:${per}}${b}%,90%{stroke-dashoffset:0}97%,100%{stroke-dashoffset:${per}}`)
-    kf(`tag${i}`, `0%,${b - 2}%{opacity:0}${b}%,90%{opacity:1}96%,100%{opacity:0}`)
+    kf(`box${i}`, `0%,${pct(a)}%{stroke-dashoffset:${per}}${pct(b)}%,${pct(HOLD)}%{stroke-dashoffset:0}${pct(UNDO)}%,100%{stroke-dashoffset:${per}}`)
+    kf(`tag${i}`, `0%,${pct(b - 0.15)}%{opacity:0}${pct(b)}%,${pct(HOLD)}%{opacity:1}${pct(HOLD + 0.4)}%,100%{opacity:0}`)
     anim(`box${i}`, `box${i}`)
     anim(`tag${i}`, `tag${i}`)
     const handles = [[bx, by], [bx + bw, by], [bx, by + bh], [bx + bw, by + bh]]
@@ -160,7 +165,7 @@ const outline = (size, sw = 1.6) =>
   }).join('')
 
   // Nombre completo: lo no seleccionado se atenúa.
-  kf('dim', `0%,36%{opacity:1}44%,90%{opacity:.34}97%,100%{opacity:1}`)
+  kf('dim', `0%,${pct(2.4)}%{opacity:1}${pct(2.8)}%,${pct(HOLD)}%{opacity:.34}${pct(UNDO)}%,100%{opacity:1}`)
   anim('dim', 'dim')
   let pickIdx = 0
   const name = row1.map((p) => {
@@ -168,7 +173,7 @@ const outline = (size, sw = 1.6) =>
     if (p.sel) {
       const i = pickIdx++
       const b = sel[i][1]
-      kf(`pick${i}`, `0%,${b - 3}%{fill:${color.text}}${b}%,90%{fill:${color.lilac}}97%,100%{fill:${color.text}}`)
+      kf(`pick${i}`, `0%,${pct(b - 0.2)}%{fill:${color.text}}${pct(b)}%,${pct(HOLD)}%{fill:${color.lilac}}${pct(UNDO)}%,100%{fill:${color.text}}`)
       anim(`pick${i}`, `pick${i}`)
       cls = `pick${i}`
     }
@@ -190,9 +195,9 @@ const outline = (size, sw = 1.6) =>
       prev = q
     }
     len = Math.ceil(len) + 4
-    kf(`wire${i}`, `0%,${42 + i * 2}%{stroke-dashoffset:${len}}${52 + i * 2}%,90%{stroke-dashoffset:0}96%,100%{stroke-dashoffset:${len}}`)
+    kf(`wire${i}`, `0%,${pct(2.7 + i * 0.1)}%{stroke-dashoffset:${len}}${pct(3.3 + i * 0.1)}%,${pct(HOLD)}%{stroke-dashoffset:0}${pct(HOLD + 0.5)}%,100%{stroke-dashoffset:${len}}`)
     anim(`wire${i}`, `wire${i}`)
-    kf(`wdot${i}`, `0%,${41 + i * 2}%{opacity:0}${43 + i * 2}%,90%{opacity:1}96%,100%{opacity:0}`)
+    kf(`wdot${i}`, `0%,${pct(2.65 + i * 0.1)}%{opacity:0}${pct(2.8 + i * 0.1)}%,${pct(HOLD)}%{opacity:1}${pct(HOLD + 0.5)}%,100%{opacity:0}`)
     anim(`wdot${i}`, `wdot${i}`)
     return `<g class="wdot${i}"><path class="wire${i}" d="${d}" fill="none" stroke="${color.brand3}" stroke-width="1.4" stroke-dasharray="${len}" opacity=".8"/>
       <circle cx="${sx}" cy="${sy}" r="3.5" fill="${color.brand3}"/>
@@ -203,17 +208,18 @@ const outline = (size, sw = 1.6) =>
   const k = s1 / s2
   const fly = picked.map((p, i) => {
     const dx = p.x - p.fx, dy = y1 - y2
-    kf(`fly${i}`, `0%,${46 + i * 3}%{opacity:0;transform:translate(${dx}px,${dy}px) scale(${k})}
-      ${48 + i * 3}%{opacity:1;transform:translate(${dx}px,${dy}px) scale(${k})}
-      ${62 + i * 3}%,90%{opacity:1;transform:none}
-      97%,100%{opacity:0;transform:translate(${dx}px,${dy}px) scale(${k})}`)
+    const t0 = 2.9 + i * 0.15
+    kf(`fly${i}`, `0%,${pct(t0)}%{opacity:0;transform:translate(${dx}px,${dy}px) scale(${k})}
+      ${pct(t0 + 0.1)}%{opacity:1;transform:translate(${dx}px,${dy}px) scale(${k})}
+      ${pct(t0 + 0.9)}%,${pct(HOLD)}%{opacity:1;transform:none}
+      ${pct(UNDO)}%,100%{opacity:0;transform:translate(${dx}px,${dy}px) scale(${k})}`)
     css.push(`.fly${i}{transform-box:view-box;transform-origin:${p.fx}px ${y2}px;animation:fly${i} ${T}s cubic-bezier(.65,0,.35,1) infinite}`)
     return `<text class="fly${i}" x="${p.fx}" y="${y2}" ${outline(s2, 2.2)}>${esc(p.t)}</text>`
   }).join('')
 
   // Nota y guiño a la derecha de JJBeta.
   const nx = x0 + jjW + 52
-  kf('note', `0%,64%{opacity:0;transform:translateY(6px)}72%,90%{opacity:1;transform:none}96%,100%{opacity:0}`)
+  kf('note', `0%,${pct(4)}%{opacity:0;transform:translateY(6px)}${pct(4.5)}%,${pct(HOLD)}%{opacity:1;transform:none}${pct(HOLD + 0.4)}%,100%{opacity:0}`)
   anim('note', 'note')
   const note = `<g class="note">
     <text x="${nx}" y="${y2 - 58}" style="${font.mono};font-size:18px" fill="${color.muted}">= <tspan fill="${color.lilac}">(J)</tspan>erónimo + <tspan fill="${color.lilac}">(J)</tspan>iménez + <tspan fill="${color.lilac}">(BETA)</tspan>ncur</text>
@@ -227,11 +233,11 @@ const outline = (size, sw = 1.6) =>
     [nx - 34, y2 - 2],
   ]
   const [fx, fy] = pts.at(-1)
-  const at = [0, 7, 17, 27, 66, 90, 100]
+  const at = [0, 0.3, 1, 1.7, 4.2, HOLD, T].map(pct)
   const seq = [pts[0], pts[1], pts[2], pts[3], pts[4], pts[4], pts[0]]
   kf('cur', seq.map(([x, y], i) => `${at[i]}%{transform:translate(${x - fx}px,${y - fy}px)}`).join(''))
   anim('cur', 'cur')
-  kf('shift', `0%,15%{opacity:0}17%,34%{opacity:1}37%,100%{opacity:0}`)
+  kf('shift', `0%,${pct(0.9)}%{opacity:0}${pct(1)}%,${pct(2.3)}%{opacity:1}${pct(2.5)}%,100%{opacity:0}`)
   anim('shift', 'shift')
   const cursor = `<g class="cur">
     <path transform="translate(${fx} ${fy}) scale(1.2)" d="M0 0L0 19L5 14.5L8.6 22.5L11.8 21L8.4 13.4L15 13.4Z" fill="${color.brand2}" stroke="${color.text}" stroke-width="1.3" stroke-linejoin="round"/>

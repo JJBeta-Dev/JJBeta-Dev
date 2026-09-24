@@ -622,6 +622,9 @@ button('btn-email.svg', 'jjbetacode@gmail.com',
 button('btn-instagram.svg', '@jnz_jero',
   glyph('instagram', 0, 0),
   false, 'Instagram @jnz_jero')
+button('btn-linkedin.svg', 'in/jjbeta',
+  glyph('linkedin', 0, 0),
+  false, 'LinkedIn de Jerónimo Jiménez Betancur')
 
 // ---------------------------------------------------------------- versión en texto
 // El mismo contenido de los paneles como markdown real (indexable, seleccionable
@@ -709,10 +712,11 @@ flowchart LR
 \`\`\`sh
 $ jjbeta --contacto
 > jjbetacode@gmail.com
+> linkedin.com/in/jjbeta
 > instagram.com/jnz_jero
 \`\`\`
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**Instagram**](https://www.instagram.com/jnz_jero/)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/jnz_jero/)
 
 <sub>JJBeta · siempre en beta.</sub>
 

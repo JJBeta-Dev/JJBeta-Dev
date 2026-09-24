@@ -45,6 +45,8 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
 <p align="center">
   <a href="mailto:jjbetacode@gmail.com"><img src="assets/btn-email.svg" height="52" alt="Escribir a jjbetacode@gmail.com"></a>
   &nbsp;
+  <a href="https://www.linkedin.com/in/jjbeta"><img src="assets/btn-linkedin.svg" height="52" alt="LinkedIn de Jerónimo Jiménez Betancur"></a>
+  &nbsp;
   <a href="https://www.instagram.com/jnz_jero/"><img src="assets/btn-instagram.svg" height="52" alt="Instagram @jnz_jero"></a>
 </p>
 
@@ -130,10 +132,11 @@ flowchart LR
 ```sh
 $ jjbeta --contacto
 > jjbetacode@gmail.com
+> linkedin.com/in/jjbeta
 > instagram.com/jnz_jero
 ```
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**Instagram**](https://www.instagram.com/jnz_jero/)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/jnz_jero/)
 
 <sub>JJBeta · siempre en beta.</sub>
 

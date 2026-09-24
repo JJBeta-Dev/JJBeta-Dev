@@ -9,6 +9,22 @@ import {
 
 const out = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets')
 const measure = await measurer()
+// Edad y meses en el equipo se calculan en cada build (el workflow corre a diario).
+const today = new Date()
+function age() {
+  const b = new Date(Date.UTC(2007, 8, 17))
+  let a = today.getUTCFullYear() - b.getUTCFullYear()
+  const m = today.getUTCMonth() - b.getUTCMonth()
+  if (m < 0 || (m === 0 && today.getUTCDate() < b.getUTCDate())) a--
+  return a
+}
+function monthsSince(d) {
+  let m = (today.getUTCFullYear() - d.getUTCFullYear()) * 12 + today.getUTCMonth() - d.getUTCMonth()
+  if (today.getUTCDate() < d.getUTCDate()) m--
+  return Math.max(m, 0)
+}
+const AGE = age()
+
 const save = (name, svg) => {
   writeFileSync(join(out, name), svg)
   console.log(`assets/${name}  ${(svg.length / 1024).toFixed(0)} KB`)
@@ -30,7 +46,7 @@ const outline = (size, sw = 1.6) =>
     .map(([hx, hy]) => `<rect x="${hx - 4.5}" y="${hy - 4.5}" width="9" height="9" fill="${color.bg}" stroke="${color.lilac}" stroke-width="1.5"/>`).join('')
   const dims = `${Math.round(box.w)} × ${Math.round(box.h)}`
   const dimsW = measure('mono', dims, 14) + 16
-  const version = 'v19.0.0-beta'
+  const version = `v${AGE}.0.0-beta`
   const versionW = measure('mono', version, 15) + 28
   const perim = Math.ceil(2 * (box.w + box.h))
   const cx = box.x + box.w + 10
@@ -60,7 +76,7 @@ const outline = (size, sw = 1.6) =>
     <text x="${versionW / 2}" y="21" text-anchor="middle" style="${font.mono};font-size:15px" fill="${color.lilac}">${version}</text>
   </g>
 
-  <text x="${x}" y="134" style="${font.mono};font-size:19px" fill="${color.muted}">Hola, soy Jerónimo Jiménez Betancur —</text>
+  <text x="${x}" y="134" style="${font.mono};font-size:19px" fill="${color.muted}">Hola, soy Jero —</text>
   <text x="${x}" y="208" style="${font.display};font-size:60px;letter-spacing:-.02em" fill="${color.text}">Diseño interfaces</text>
   <text x="${x}" y="274" style="${font.display};font-size:60px;letter-spacing:-.02em" fill="${color.text}">que se sienten como</text>
   <text x="${x}" y="356" ${outline(l3size, 1.8)}>${line3}</text>
@@ -267,6 +283,70 @@ const outline = (size, sw = 1.6) =>
   }))
 }
 
+// ---------------------------------------------------------------- experiencia
+{
+  const since = new Date(Date.UTC(2025, 10, 24))
+  const months = monthsSince(since)
+  const left = 56
+  const col = 620
+  const bulletW = W - 56 - col - 32
+  const items = [
+    'Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n',
+    'Diseño flujos y pantallas en Figma antes de escribir código',
+    'Trabajo con code review, commits convencionales y pruebas en Vitest',
+  ]
+  let y = 128
+  const bullets = []
+  items.forEach((it) => {
+    const lines = wrap(measure, 'body', it, 19, bulletW)
+    bullets.push(`<text x="${col}" y="${y}" style="${font.mono};font-size:17px" fill="${color.brand3}">+</text>`)
+    lines.forEach((l, k) => bullets.push(`<text x="${col + 24}" y="${y + k * 27}" style="${font.body};font-size:19px" fill="${color.text}">${esc(l)}</text>`))
+    y += lines.length * 27 + 16
+  })
+
+  const stats = [
+    ['+25', 'pull requests con review'],
+    [String(months), months === 1 ? 'mes en el equipo' : 'meses en el equipo'],
+    ['3', 'productos en equipo'],
+  ]
+  const statTop = Math.max(y + 62, 330)
+  const statW = (W - 112) / 3
+  const statsSvg = stats.map(([v, l], i) => {
+    const x = left + i * statW
+    const div = i === 0 ? '' : `<line x1="${x - 24}" y1="${statTop - 34}" x2="${x - 24}" y2="${statTop + 30}" stroke="${color.line}"/>`
+    return `${div}<text x="${x}" y="${statTop + 4}" style="${font.display};font-size:40px;letter-spacing:-.02em" fill="${color.text}">${v}</text>
+    <text x="${x}" y="${statTop + 30}" style="${font.mono};font-size:15px" fill="${color.muted}">${l}</text>`
+  }).join('')
+  const H = statTop + 92
+
+  const period = `nov 2025 — hoy`
+  const periodW = measure('mono', period, 14) + 44
+  const title2 = 'y UX/UI Designer'
+  const body = `${sectionLabel('01', 'Experiencia')}
+  <text x="${left}" y="150" style="${font.display};font-size:42px;letter-spacing:-.02em" fill="${color.text}">Front-End Developer</text>
+  <text x="${left}" y="202" ${outline(42, 1.4)}>${title2}</text>
+  <text x="${left}" y="250" style="${font.body};font-size:22px" fill="${color.text}">Asincode S.A.S.</text>
+  <g transform="translate(${left + measure('body', 'Asincode S.A.S.', 22) + 16} 231)">
+    <rect width="${periodW}" height="28" rx="14" fill="${color.bg}" stroke="${color.line}"/>
+    <circle class="pulse" cx="15" cy="14" r="4" fill="${color.brand3}"/>
+    <text x="28" y="19" style="${font.mono};font-size:14px" fill="${color.lilac}">${period}</text>
+  </g>
+  <line x1="${col - 36}" y1="108" x2="${col - 36}" y2="${statTop - 64}" stroke="${color.line}"/>
+  ${bullets.join('')}
+  <line x1="${left}" y1="${statTop - 52}" x2="${W - 56}" y2="${statTop - 52}" stroke="${color.lineSoft}"/>
+  ${statsSvg}`
+
+  save('experience.svg', frame({
+    h: H,
+    title: 'Experiencia: Front-End Developer y UX/UI Designer en Asincode S.A.S.',
+    desc: `Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025 (${months} meses). ${items.join('. ')}. Más de 25 pull requests con code review en 3 productos de equipo.`,
+    fonts: ['display', 'body', 'mono'],
+    css: `.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.7)}}`,
+    body,
+  }))
+}
+
 // ---------------------------------------------------------------- principios
 {
   const cols = [
@@ -305,7 +385,7 @@ const outline = (size, sw = 1.6) =>
     desc: cols.map((c) => `${c[2]}: ${c[3]}`).join(' '),
     fonts: ['display', 'body', 'mono'],
     css: `.rise{animation:rise .7s ${ease} both}@keyframes rise{from{opacity:0;transform:translateY(10px)}}`,
-    body: `${sectionLabel('01', 'Cómo trabajo')}${body}`,
+    body: `${sectionLabel('03', 'Cómo trabajo')}${body}`,
   }))
 }
 
@@ -369,7 +449,7 @@ const outline = (size, sw = 1.6) =>
     css: `.rise{animation:rise .6s ${ease} both}@keyframes rise{from{opacity:0;transform:translateY(8px)}}
 .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}`,
-    body: `${sectionLabel('02', 'Herramientas')}${parts.join('')}`,
+    body: `${sectionLabel('04', 'Herramientas')}${parts.join('')}`,
   }))
 }
 
@@ -410,7 +490,7 @@ const outline = (size, sw = 1.6) =>
     </g>${wire}`
   }).join('')
 
-  const body = `${sectionLabel('03', 'Automatización')}
+  const body = `${sectionLabel('02', 'Automatización')}
   <g transform="translate(${W - 56 - madeW} 42)">
     <rect width="${madeW}" height="32" rx="16" fill="${color.bg}" stroke="${color.line}"/>
     ${glyph('make', 16, 7, 18)}
@@ -440,14 +520,13 @@ const outline = (size, sw = 1.6) =>
   const bulletX = tx + 40
   const bulletW = W - 56 - bulletX - 8
   const releases = [
-    { v: 'v19.0', meta: 'actual · sep 2026', mark: '+', live: true, items: [
+    { v: `v${AGE}.0`, meta: 'actual', mark: '+', live: true, items: [
+      'Front-End y UX/UI en Asincode desde nov 2025',
       'Interfaces en React y TypeScript con Tailwind CSS',
       'Accesibilidad, semántica y SEO desde el primer commit',
-      'Pruebas con Vitest y código ordenado con ESLint',
     ] },
-    { v: 'v20.0', meta: 'roadmap · sep 2027', mark: '→', live: false, items: [
+    { v: `v${AGE + 1}.0`, meta: 'en progreso', mark: '→', live: false, items: [
       'Next.js: App Router, Server Components y SSR',
-      'Proyectos personales públicos, aquí mismo',
     ] },
   ]
   let y = 128
@@ -471,7 +550,7 @@ const outline = (size, sw = 1.6) =>
   const titleW = measure('display', 'Siempre en', 54) * 0.98 + 6
   const sub = wrap(measure, 'body', 'Todavía me falta mucho por aprender, y esa es la mejor parte: cada proyecto sale un poco mejor que el anterior.', 20, 480)
 
-  const body = `${sectionLabel('04', 'Changelog')}
+  const body = `${sectionLabel('05', 'Changelog')}
   <line x1="${tx}" y1="${128}" x2="${tx}" y2="${H - 40}" stroke="${color.line}"/>
   <text x="${left}" y="170" style="${font.display};font-size:54px;letter-spacing:-.02em" fill="${color.text}">Siempre en<tspan x="${left + titleW}" ${outline(54, 1.5)}>beta.</tspan></text>
   ${sub.map((l, k) => `<text x="${left}" y="${222 + k * 30}" style="${font.body};font-size:20px" fill="${color.muted}">${esc(l)}</text>`).join('')}
@@ -507,7 +586,7 @@ const outline = (size, sw = 1.6) =>
     { type: 'tine', x: 0, y: 130, angle: 0, z: 45, u: 0.993 },
     { type: 'wave', amp: 12, wave: 70 },
   ], 780, 'contact')}
-  ${sectionLabel('06', 'Contacto')}
+  ${sectionLabel('07', 'Contacto')}
   <text x="56" y="150" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">¿Una vacante, un proyecto</text>
   <text x="56" y="206" style="${font.display};font-size:46px;letter-spacing:-.02em" fill="${color.text}">o ganas de hablar de <tspan ${outline(46, 1.4)}>diseño?</tspan></text>
   <text x="56" y="252" style="${font.body};font-size:20px" fill="${color.muted}">Escríbeme, respondo rápido. Los enlaces están justo debajo.</text>`

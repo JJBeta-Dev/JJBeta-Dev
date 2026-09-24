@@ -1,4 +1,4 @@
-name: Tablero de contribuciones
+name: Paneles del perfil
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [scripts/contributions.mjs, scripts/lib.mjs]
+    paths: ['scripts/**']
 
 permissions:
   contents: write
@@ -23,6 +23,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+      # Regenera todo: edad (versión), meses en el equipo y el tablero.
+      - run: npm ci
+      - run: node scripts/build-assets.mjs
       - run: node scripts/contributions.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,8 +34,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/contributions.svg
+          git add assets
           git diff --staged --quiet && exit 0
-          git commit -m "chore: actualizar tablero de contribuciones"
+          git commit -m "chore: actualizar paneles del perfil"
           git pull --rebase origin main
           git push

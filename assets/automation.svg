@@ -23,7 +23,7 @@
 <g clip-path="url(#panel)">
   <rect width="1200" height="585" fill="#07050A"/>
   <text x="56" y="64" style="font-family:JetBrains,ui-monospace,monospace;font-weight:500;font-size:16px;letter-spacing:.04em">
-    <tspan fill="#8A5FE0">03</tspan><tspan fill="#A495B3" dx="10">/  Automatización</tspan>
+    <tspan fill="#8A5FE0">02</tspan><tspan fill="#A495B3" dx="10">/  Automatización</tspan>
   </text>
   <g transform="translate(984.8 42)">
     <rect width="159.20000000000005" height="32" rx="16" fill="#07050A" stroke="#241631"/>

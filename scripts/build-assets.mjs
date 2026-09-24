@@ -305,9 +305,9 @@ const outline = (size, sw = 1.6) =>
   })
 
   const stats = [
-    ['+20', 'pull requests con review'],
     [String(months), months === 1 ? 'mes en el equipo' : 'meses en el equipo'],
-    ['2', 'productos del equipo'],
+    ['2 en 1', 'diseño UX/UI y desarrollo'],
+    ['Figma → prod', 'del boceto a producción'],
   ]
   const statTop = Math.max(y + 62, 330)
   const statW = (W - 112) / 3
@@ -339,7 +339,7 @@ const outline = (size, sw = 1.6) =>
   save('experience.svg', frame({
     h: H,
     title: 'Experiencia: Front-End Developer y UX/UI Designer en Asincode S.A.S.',
-    desc: `Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025 (${months} meses). ${items.join('. ')}. Más de 20 pull requests con code review en 2 productos del equipo.`,
+    desc: `Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025 (${months} meses). ${items.join('. ')}. Llevo cada pantalla del boceto en Figma a producción, con diseño y desarrollo en el mismo rol.`,
     fonts: ['display', 'body', 'mono'],
     css: `.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}`,
@@ -660,7 +660,7 @@ export const jjbeta = {
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
 - Trabajo con code review, commits convencionales y pruebas en Vitest.
-- **+20** pull requests con review en **2** productos del equipo.
+- Llevo cada pantalla del boceto en Figma a producción: diseño y desarrollo en el mismo rol.
 
 #### Formación
 

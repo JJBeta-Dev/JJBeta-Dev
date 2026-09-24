@@ -15,7 +15,7 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
 </p>
 
 <p align="center">
-  <img src="assets/experience.svg" width="100%" alt="Experiencia: Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025. Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n; diseño flujos y pantallas en Figma antes de escribir código; trabajo con code review, commits convencionales y pruebas en Vitest. Más de 25 pull requests con review en 3 productos de equipo.">
+  <img src="assets/experience.svg" width="100%" alt="Experiencia: Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025. Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n; diseño flujos y pantallas en Figma antes de escribir código; trabajo con code review, commits convencionales y pruebas en Vitest. Más de 20 pull requests con review en 2 productos del equipo.">
 </p>
 
 <p align="center">
@@ -80,7 +80,11 @@ export const jjbeta = {
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
 - Trabajo con code review, commits convencionales y pruebas en Vitest.
-- **+25** pull requests con review en **3** productos de equipo.
+- **+20** pull requests con review en **2** productos del equipo.
+
+#### Formación
+
+**Técnica Laboral en Sistemas Informáticos** · Politécnico ASDI, Rionegro · 2025 – 2026
 
 #### Automatizo lo repetitivo
 

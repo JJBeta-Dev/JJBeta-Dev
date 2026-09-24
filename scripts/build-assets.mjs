@@ -305,9 +305,9 @@ const outline = (size, sw = 1.6) =>
   })
 
   const stats = [
-    ['+25', 'pull requests con review'],
+    ['+20', 'pull requests con review'],
     [String(months), months === 1 ? 'mes en el equipo' : 'meses en el equipo'],
-    ['3', 'productos en equipo'],
+    ['2', 'productos del equipo'],
   ]
   const statTop = Math.max(y + 62, 330)
   const statW = (W - 112) / 3
@@ -660,7 +660,11 @@ export const jjbeta = {
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
 - Trabajo con code review, commits convencionales y pruebas en Vitest.
-- **+25** pull requests con review en **3** productos de equipo.
+- **+20** pull requests con review en **2** productos del equipo.
+
+#### Formación
+
+**Técnica Laboral en Sistemas Informáticos** · Politécnico ASDI, Rionegro · 2025 – 2026
 
 #### Automatizo lo repetitivo
 

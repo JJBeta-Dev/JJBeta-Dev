@@ -11,6 +11,8 @@ const token = process.env.GITHUB_TOKEN
 if (!token) throw new Error('Falta GITHUB_TOKEN')
 
 const query = `query($login:String!){user(login:$login){contributionsCollection{
+  totalCommitContributions totalPullRequestContributions restrictedContributionsCount
+  totalRepositoriesWithContributedCommits totalRepositoriesWithContributedPullRequests
   contributionCalendar{totalContributions weeks{contributionDays{date contributionCount contributionLevel}}}}}}`
 
 const res = await fetch('https://api.github.com/graphql', {
@@ -20,7 +22,8 @@ const res = await fetch('https://api.github.com/graphql', {
 })
 const json = await res.json()
 if (json.errors) throw new Error(JSON.stringify(json.errors))
-const cal = json.data.user.contributionsCollection.contributionCalendar
+const col = json.data.user.contributionsCollection
+const cal = col.contributionCalendar
 
 const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 const fmt = (iso) => {
@@ -30,18 +33,7 @@ const fmt = (iso) => {
 
 const days = cal.weeks.flatMap((w) => w.contributionDays)
 
-// Rachas: la actual no se rompe si hoy todavía no hay contribuciones.
-let longest = 0, run = 0
-for (const d of days) {
-  run = d.contributionCount > 0 ? run + 1 : 0
-  longest = Math.max(longest, run)
-}
-let current = 0
-for (let i = days.length - 1; i >= 0; i--) {
-  if (days[i].contributionCount > 0) current++
-  else if (i === days.length - 1) continue
-  else break
-}
+const active = days.filter((d) => d.contributionCount > 0).length
 const best = days.reduce((a, b) => (b.contributionCount > a.contributionCount ? b : a), days[0])
 
 const levels = {
@@ -75,12 +67,12 @@ const monthLabels = cal.weeks.map((w, c) => {
 const dayLabels = [[1, 'lun'], [3, 'mié'], [5, 'vie']]
   .map(([r, l]) => `<text x="56" y="${gy + r * step + 12}" style="${font.mono};font-size:14px" fill="${color.muted}">${l}</text>`).join('')
 
-const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`
+// Métricas que cuentan el trabajo real: volumen, colaboración y constancia.
 const stats = [
   [String(cal.totalContributions), 'contribuciones'],
-  [plural(current, 'día', 'días'), 'racha actual'],
-  [plural(longest, 'día', 'días'), 'racha más larga'],
-  [String(best.contributionCount), `mejor día · ${fmt(best.date)}`],
+  [String(col.totalPullRequestContributions), 'pull requests'],
+  [String(col.totalCommitContributions), 'commits'],
+  [String(active), 'días activos'],
 ]
 const statW = (W - 112) / 4
 const statsSvg = stats.map(([v, l], i) => {
@@ -106,7 +98,7 @@ const body = `${sectionLabel('05', 'Actividad')}
 const svg = frame({
   h: H,
   title: 'Actividad en GitHub',
-  desc: `${cal.totalContributions} contribuciones en los últimos 12 meses. Racha actual: ${current} días. Racha más larga: ${longest} días. Mejor día: ${best.contributionCount} contribuciones el ${fmt(best.date)}.`,
+  desc: `${cal.totalContributions} contribuciones en los últimos 12 meses: ${col.totalPullRequestContributions} pull requests, ${col.totalCommitContributions} commits y ${active} días activos.`,
   fonts: ['display', 'mono'],
   css: `.c{transform-box:fill-box;transform-origin:center;animation:c .5s ${ease} both}
 @keyframes c{from{opacity:0;transform:scale(.4)}}`,
@@ -115,4 +107,4 @@ const svg = frame({
 
 const out = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'contributions.svg')
 writeFileSync(out, svg)
-console.log(`contributions.svg: ${cal.totalContributions} contribuciones, racha ${current}/${longest}`)
+console.log(`contributions.svg: ${JSON.stringify({ total: cal.totalContributions, prs: col.totalPullRequestContributions, commits: col.totalCommitContributions, restricted: col.restrictedContributionsCount, repos: col.totalRepositoriesWithContributedCommits, active })}`)

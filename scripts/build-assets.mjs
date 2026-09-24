@@ -629,45 +629,92 @@ button('btn-instagram.svg', '@jnz_jero',
 {
   const months = monthsSince(new Date(Date.UTC(2025, 10, 24)))
   const text = `<details>
-<summary><strong>Versión en texto</strong> · el mismo perfil, sin imágenes</summary>
+<summary><strong>Versión en texto</strong> · <code>README --no-images</code></summary>
+<br>
 
-### Jerónimo Jiménez Betancur — JJBeta
+\`\`\`ts
+// jjbeta.config.ts
+export const jjbeta = {
+  nombre: 'Jerónimo Jiménez Betancur',
+  alias: 'JJBeta',
+  rol: ['UX/UI Designer', 'Front-End Developer'],
+  base: 'El Carmen de Viboral, CO',
+  version: '${AGE}.0.0-beta', // el número de versión es mi edad
+  principio: 'que todo se sienta como una sola pieza',
+} as const
+\`\`\`
 
-UX/UI Designer y Front-End Developer en El Carmen de Viboral, Colombia. Diseño interfaces que se sienten como una sola pieza.
+#### ¿Por qué JJBeta?
 
-**Por qué JJBeta:** (J)erónimo (J)iménez (BETA)ncur. Y también porque siempre estoy en beta.
+<kbd><b>J</b>erónimo</kbd> + <kbd><b>J</b>iménez</kbd> + <kbd><b>Beta</b>ncur</kbd> = **JJBeta**
+<br><sub>Y también porque siempre estoy en beta.</sub>
 
-### Experiencia
+#### Experiencia
 
-**Front-End Developer y UX/UI Designer** · Asincode S.A.S. · noviembre de 2025 – hoy (${months} ${months === 1 ? 'mes' : 'meses'})
+> **Front-End Developer y UX/UI Designer** · [Asincode S.A.S.](https://asincode.co)
+> <br>\`nov 2025 → hoy\` · ${months} ${months === 1 ? 'mes' : 'meses'} en el equipo
 
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
 - Trabajo con code review, commits convencionales y pruebas en Vitest.
-- Más de 25 pull requests con review en 3 productos de equipo.
+- **+25** pull requests con review en **3** productos de equipo.
 
-### Automatización
+#### Automatizo lo repetitivo
 
-Automatizo lo repetitivo. Un flujo hecho en Make: le mando a un bot de Telegram lo que salió de una reunión, Groq transcribe el audio, Gemini planea la tarea con su prioridad y sugiere a quién asignarla según las habilidades del equipo, Notion crea la tarea y Telegram confirma. También trabajo con n8n y modelos locales en Ollama.
+\`\`\`mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#140C1B','primaryTextColor':'#F4EFFA','primaryBorderColor':'#8A5FE0','lineColor':'#8A5FE0','fontFamily':'ui-monospace, monospace'}}}%%
+flowchart LR
+  A([Telegram<br>mensaje o audio]) --> B[Groq<br>transcribe]
+  B --> C[Gemini<br>planea y sugiere responsable]
+  C --> D[Notion<br>crea la tarea]
+  D --> E([Telegram<br>confirma al equipo])
+\`\`\`
 
-### Cómo trabajo
+<sub>Hecho en Make. También trabajo con n8n y modelos locales en Ollama.</sub>
 
-1. **Accesible por defecto.** Contraste real, foco visible y todo usable con teclado. Si alguien no puede usarlo, no está terminado.
-2. **Semántica que se entiende.** HTML con sentido para lectores de pantalla y buscadores. El SEO empieza en el marcado, no al final.
-3. **Una sola pieza.** Tokens compartidos y ritmo constante: cada sección conversa con la siguiente.
+#### Cómo trabajo
 
-### Herramientas
+> **Si alguien no puede usarlo, no está terminado.**
 
-- **Diseño:** papel y lápiz, Figma, Photoshop
-- **Código:** HTML, CSS, JavaScript, TypeScript, React, Tailwind CSS
-- **Datos y forms:** TanStack Query, Zustand, Zod, React Hook Form
-- **Automatización:** Make, n8n, Ollama
-- **Flujo:** Vite, Vitest, Git, Yaak, Zed
-- **Siguiente:** Next.js (en progreso)
+| | Principio | En la práctica |
+|:-:|:--|:--|
+| \`01\` | **Accesible por defecto** | Contraste real, foco visible y todo usable con teclado. |
+| \`02\` | **Semántica que se entiende** | HTML con sentido para lectores de pantalla y buscadores: el SEO empieza en el marcado. |
+| \`03\` | **Una sola pieza** | Tokens compartidos y ritmo constante; cada sección conversa con la siguiente. |
 
-### Contacto
+#### Herramientas
 
-[jjbetacode@gmail.com](mailto:jjbetacode@gmail.com) · [Instagram @jnz_jero](https://www.instagram.com/jnz_jero/)
+| Área | Herramientas |
+|:--|:--|
+| **Diseño** | papel y lápiz → \`Figma\` · \`Photoshop\` |
+| **Código** | \`HTML\` · \`CSS\` · \`JavaScript\` · \`TypeScript\` · \`React\` · \`Tailwind CSS\` |
+| **Datos y forms** | \`TanStack Query\` · \`Zustand\` · \`Zod\` · \`React Hook Form\` |
+| **Automatización** | \`Make\` · \`n8n\` · \`Ollama\` |
+| **Flujo** | \`Vite\` · \`Vitest\` · \`Git\` · \`Yaak\` · \`Zed\` |
+
+#### Changelog
+
+\`\`\`diff
+@@ v${AGE}.0 · actual @@
++ Front-End y UX/UI en Asincode desde nov 2025
++ Interfaces en React y TypeScript con Tailwind CSS
++ Accesibilidad, semántica y SEO desde el primer commit
+
+@@ v${AGE + 1}.0 · en progreso @@
++ Next.js: App Router, Server Components y SSR
+\`\`\`
+
+#### Contacto
+
+\`\`\`sh
+$ jjbeta --contacto
+> jjbetacode@gmail.com
+> instagram.com/jnz_jero
+\`\`\`
+
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**Instagram**](https://www.instagram.com/jnz_jero/)
+
+<sub>JJBeta · siempre en beta.</sub>
 
 </details>`
 

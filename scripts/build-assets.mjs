@@ -293,7 +293,7 @@ const outline = (size, sw = 1.6) =>
   const items = [
     'Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n',
     'Diseño flujos y pantallas en Figma antes de escribir código',
-    'Trabajo con code review, commits convencionales y pruebas en Vitest',
+    'Code review, commits convencionales, pruebas en Vitest y código documentado con JSDoc/TSDoc',
   ]
   let y = 128
   const bullets = []
@@ -659,7 +659,7 @@ export const jjbeta = {
 
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
-- Trabajo con code review, commits convencionales y pruebas en Vitest.
+- Trabajo con code review, commits convencionales, pruebas en Vitest y código documentado con JSDoc/TSDoc.
 - Llevo cada pantalla del boceto en Figma a producción: diseño y desarrollo en el mismo rol.
 
 #### Formación

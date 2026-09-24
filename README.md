@@ -35,7 +35,7 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
 </p>
 
 <p align="center">
-  <img src="assets/contributions.svg" width="100%" alt="Actividad en GitHub de los últimos 12 meses, con total de contribuciones, rachas y calendario por días. Se actualiza a diario.">
+  <img src="assets/contributions.svg" width="100%" alt="Actividad en GitHub de los últimos 12 meses, con total de contribuciones, días y semanas activas y calendario por días. Se actualiza a diario.">
 </p>
 
 <p align="center">
@@ -47,3 +47,48 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
   &nbsp;
   <a href="https://www.instagram.com/jnz_jero/"><img src="assets/btn-instagram.svg" height="52" alt="Instagram @jnz_jero"></a>
 </p>
+
+<!-- texto:inicio -->
+<details>
+<summary><strong>Versión en texto</strong> · el mismo perfil, sin imágenes</summary>
+
+### Jerónimo Jiménez Betancur — JJBeta
+
+UX/UI Designer y Front-End Developer en El Carmen de Viboral, Colombia. Diseño interfaces que se sienten como una sola pieza.
+
+**Por qué JJBeta:** (J)erónimo (J)iménez (BETA)ncur. Y también porque siempre estoy en beta.
+
+### Experiencia
+
+**Front-End Developer y UX/UI Designer** · Asincode S.A.S. · noviembre de 2025 – hoy (10 meses)
+
+- Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
+- Diseño flujos y pantallas en Figma antes de escribir código.
+- Trabajo con code review, commits convencionales y pruebas en Vitest.
+- Más de 25 pull requests con review en 3 productos de equipo.
+
+### Automatización
+
+Automatizo lo repetitivo. Un flujo hecho en Make: le mando a un bot de Telegram lo que salió de una reunión, Groq transcribe el audio, Gemini planea la tarea con su prioridad y sugiere a quién asignarla según las habilidades del equipo, Notion crea la tarea y Telegram confirma. También trabajo con n8n y modelos locales en Ollama.
+
+### Cómo trabajo
+
+1. **Accesible por defecto.** Contraste real, foco visible y todo usable con teclado. Si alguien no puede usarlo, no está terminado.
+2. **Semántica que se entiende.** HTML con sentido para lectores de pantalla y buscadores. El SEO empieza en el marcado, no al final.
+3. **Una sola pieza.** Tokens compartidos y ritmo constante: cada sección conversa con la siguiente.
+
+### Herramientas
+
+- **Diseño:** papel y lápiz, Figma, Photoshop
+- **Código:** HTML, CSS, JavaScript, TypeScript, React, Tailwind CSS
+- **Datos y forms:** TanStack Query, Zustand, Zod, React Hook Form
+- **Automatización:** Make, n8n, Ollama
+- **Flujo:** Vite, Vitest, Git, Yaak, Zed
+- **Siguiente:** Next.js (en progreso)
+
+### Contacto
+
+[jjbetacode@gmail.com](mailto:jjbetacode@gmail.com) · [Instagram @jnz_jero](https://www.instagram.com/jnz_jero/)
+
+</details>
+<!-- texto:fin -->

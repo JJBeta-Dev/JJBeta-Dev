@@ -1,5 +1,5 @@
 // Genera los paneles estáticos del README: node scripts/build-assets.mjs
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import {
@@ -622,3 +622,62 @@ button('btn-email.svg', 'jjbetacode@gmail.com',
 button('btn-instagram.svg', '@jnz_jero',
   glyph('instagram', 0, 0),
   false, 'Instagram @jnz_jero')
+
+// ---------------------------------------------------------------- versión en texto
+// El mismo contenido de los paneles como markdown real (indexable, seleccionable
+// y cómodo para lectores de pantalla), dentro de un <details> al final del README.
+{
+  const months = monthsSince(new Date(Date.UTC(2025, 10, 24)))
+  const text = `<details>
+<summary><strong>Versión en texto</strong> · el mismo perfil, sin imágenes</summary>
+
+### Jerónimo Jiménez Betancur — JJBeta
+
+UX/UI Designer y Front-End Developer en El Carmen de Viboral, Colombia. Diseño interfaces que se sienten como una sola pieza.
+
+**Por qué JJBeta:** (J)erónimo (J)iménez (BETA)ncur. Y también porque siempre estoy en beta.
+
+### Experiencia
+
+**Front-End Developer y UX/UI Designer** · Asincode S.A.S. · noviembre de 2025 – hoy (${months} ${months === 1 ? 'mes' : 'meses'})
+
+- Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
+- Diseño flujos y pantallas en Figma antes de escribir código.
+- Trabajo con code review, commits convencionales y pruebas en Vitest.
+- Más de 25 pull requests con review en 3 productos de equipo.
+
+### Automatización
+
+Automatizo lo repetitivo. Un flujo hecho en Make: le mando a un bot de Telegram lo que salió de una reunión, Groq transcribe el audio, Gemini planea la tarea con su prioridad y sugiere a quién asignarla según las habilidades del equipo, Notion crea la tarea y Telegram confirma. También trabajo con n8n y modelos locales en Ollama.
+
+### Cómo trabajo
+
+1. **Accesible por defecto.** Contraste real, foco visible y todo usable con teclado. Si alguien no puede usarlo, no está terminado.
+2. **Semántica que se entiende.** HTML con sentido para lectores de pantalla y buscadores. El SEO empieza en el marcado, no al final.
+3. **Una sola pieza.** Tokens compartidos y ritmo constante: cada sección conversa con la siguiente.
+
+### Herramientas
+
+- **Diseño:** papel y lápiz, Figma, Photoshop
+- **Código:** HTML, CSS, JavaScript, TypeScript, React, Tailwind CSS
+- **Datos y forms:** TanStack Query, Zustand, Zod, React Hook Form
+- **Automatización:** Make, n8n, Ollama
+- **Flujo:** Vite, Vitest, Git, Yaak, Zed
+- **Siguiente:** Next.js (en progreso)
+
+### Contacto
+
+[jjbetacode@gmail.com](mailto:jjbetacode@gmail.com) · [Instagram @jnz_jero](https://www.instagram.com/jnz_jero/)
+
+</details>`
+
+  const readme = join(dirname(fileURLToPath(import.meta.url)), '..', 'README.md')
+  const start = '<!-- texto:inicio -->', end = '<!-- texto:fin -->'
+  let md = readFileSync(readme, 'utf8')
+  const block = `${start}\n${text}\n${end}`
+  md = md.includes(start)
+    ? md.replace(new RegExp(`${start}[\\s\\S]*?${end}`), block)
+    : `${md.trimEnd()}\n\n${block}\n`
+  writeFileSync(readme, md)
+  console.log('README.md  versión en texto')
+}

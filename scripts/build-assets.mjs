@@ -339,7 +339,7 @@ const outline = (size, sw = 1.6) =>
   save('experience.svg', frame({
     h: H,
     title: 'Experiencia: Front-End Developer y UX/UI Designer en Asincode S.A.S.',
-    desc: `Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025 (${months} meses). ${items.join('. ')}. Más de 25 pull requests con code review en 3 productos de equipo.`,
+    desc: `Front-End Developer y UX/UI Designer en Asincode S.A.S. desde noviembre de 2025 (${months} meses). ${items.join('. ')}. Más de 20 pull requests con code review en 2 productos del equipo.`,
     fonts: ['display', 'body', 'mono'],
     css: `.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}`,

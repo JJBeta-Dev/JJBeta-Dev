@@ -8,7 +8,11 @@
   <img src="assets/hero.svg" width="100%" alt="Jerónimo Jiménez Betancur, UX/UI Designer y Front-End Developer en El Carmen de Viboral, Colombia. Diseño interfaces que se sienten como una sola pieza.">
 </p>
 
-Soy **Jerónimo Jiménez Betancur**, pero en código me conocen como **JJBeta**. Diseño interfaces en Figma y las construyo con React, TypeScript y Tailwind CSS, cuidando que sean accesibles, tengan una semántica que se entienda y se vean como una sola pieza, no como bloques pegados.
+Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bien o que funcione bien, así que hago las dos cosas: diseño la interfaz y la construyo, cuidando que sea accesible y que se sienta como una sola pieza.
+
+<p align="center">
+  <img src="assets/name.svg" width="100%" alt="De dónde sale JJBeta: del nombre Jerónimo Jiménez Betancur se seleccionan la J de Jerónimo, la J de Jiménez y Beta de Betancur, y juntas forman JJBeta. Y también porque siempre estoy en beta.">
+</p>
 
 <p align="center">
   <img src="assets/principles.svg" width="100%" alt="Cómo trabajo. 01, Accesible por defecto: contraste real, foco visible y todo usable con teclado; si alguien no puede usarlo, no está terminado. 02, Semántica que se entiende: HTML con sentido para lectores de pantalla y buscadores; el SEO empieza en el marcado. 03, Una sola pieza: tokens compartidos y ritmo constante; cada sección conversa con la siguiente.">

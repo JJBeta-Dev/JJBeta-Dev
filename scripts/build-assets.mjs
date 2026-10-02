@@ -619,9 +619,15 @@ function button(file, label, glyph, filled, title) {
 button('btn-email.svg', 'jjbetacode@gmail.com',
   `<rect x="0" y="2" width="22" height="17" rx="3" fill="none" stroke="${color.lilac}" stroke-width="1.7"/><path d="M1.5 4.5L11 11.5L20.5 4.5" fill="none" stroke="${color.lilac}" stroke-width="1.7" stroke-linejoin="round"/>`,
   true, 'Escribir a jjbetacode@gmail.com')
-button('btn-instagram.svg', '@jnz_jero',
+button('btn-instagram.svg', '@soyjjbeta',
   glyph('instagram', 0, 0),
-  false, 'Instagram @jnz_jero')
+  false, 'Instagram @soyjjbeta')
+button('btn-behance.svg', 'soyjjbeta',
+  glyph('behance', 0, 0),
+  false, 'Behance de JJBeta')
+button('btn-dribbble.svg', 'soyjjbeta',
+  glyph('dribbble', 0, 0),
+  false, 'Dribbble de JJBeta')
 button('btn-linkedin.svg', 'in/jjbeta',
   glyph('linkedin', 0, 0),
   false, 'LinkedIn de Jerónimo Jiménez Betancur')
@@ -717,10 +723,12 @@ flowchart LR
 $ jjbeta --contacto
 > jjbetacode@gmail.com
 > linkedin.com/in/jjbeta
-> instagram.com/jnz_jero
+> instagram.com/soyjjbeta
+> behance.net/soyjjbeta
+> dribbble.com/soyjjbeta
 \`\`\`
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/jnz_jero/)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta)
 
 <sub>JJBeta · siempre en beta.</sub>
 

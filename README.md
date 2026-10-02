@@ -47,7 +47,11 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
   &nbsp;
   <a href="https://www.linkedin.com/in/jjbeta"><img src="assets/btn-linkedin.svg" height="52" alt="LinkedIn de Jerónimo Jiménez Betancur"></a>
   &nbsp;
-  <a href="https://www.instagram.com/jnz_jero/"><img src="assets/btn-instagram.svg" height="52" alt="Instagram @jnz_jero"></a>
+  <a href="https://www.instagram.com/soyjjbeta/"><img src="assets/btn-instagram.svg" height="52" alt="Instagram @soyjjbeta"></a>
+  &nbsp;
+  <a href="https://www.behance.net/soyjjbeta"><img src="assets/btn-behance.svg" height="52" alt="Behance de JJBeta"></a>
+  &nbsp;
+  <a href="https://dribbble.com/soyjjbeta"><img src="assets/btn-dribbble.svg" height="52" alt="Dribbble de JJBeta"></a>
 </p>
 
 <!-- texto:inicio -->
@@ -137,10 +141,12 @@ flowchart LR
 $ jjbeta --contacto
 > jjbetacode@gmail.com
 > linkedin.com/in/jjbeta
-> instagram.com/jnz_jero
+> instagram.com/soyjjbeta
+> behance.net/soyjjbeta
+> dribbble.com/soyjjbeta
 ```
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/jnz_jero/)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta)
 
 <sub>JJBeta · siempre en beta.</sub>
 

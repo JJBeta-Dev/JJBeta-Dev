@@ -628,6 +628,12 @@ button('btn-behance.svg', 'soyjjbeta',
 button('btn-dribbble.svg', 'soyjjbeta',
   glyph('dribbble', 0, 0),
   false, 'Dribbble de JJBeta')
+button('btn-whatsapp.svg', '315 211 6330',
+  glyph('whatsapp', 0, 0),
+  false, 'WhatsApp de JJBeta: 315 211 6330')
+button('btn-plantillas.svg', 'Plantillas web',
+  `<rect x="1" y="2" width="20" height="17" rx="3" fill="none" stroke="${color.lilac}" stroke-width="1.7"/><path d="M1.5 7.5H20.5M8 7.5V18.5" fill="none" stroke="${color.lilac}" stroke-width="1.7"/>`,
+  false, 'Plantillas web de JJBeta')
 button('btn-linkedin.svg', 'in/jjbeta',
   glyph('linkedin', 0, 0),
   false, 'LinkedIn de Jerónimo Jiménez Betancur')
@@ -726,9 +732,11 @@ $ jjbeta --contacto
 > instagram.com/soyjjbeta
 > behance.net/soyjjbeta
 > dribbble.com/soyjjbeta
+> WhatsApp 315 211 6330
+> jjbeta-dev.github.io/plantillas
 \`\`\`
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta) · [**WhatsApp**](https://wa.me/573152116330) · [**Plantillas**](https://jjbeta-dev.github.io/plantillas/)
 
 <sub>JJBeta · siempre en beta.</sub>
 

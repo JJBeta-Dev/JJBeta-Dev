@@ -52,6 +52,10 @@ Soy **Jerónimo Jiménez Betancur**. No me gusta elegir entre que algo se vea bi
   <a href="https://www.behance.net/soyjjbeta"><img src="assets/btn-behance.svg" height="52" alt="Behance de JJBeta"></a>
   &nbsp;
   <a href="https://dribbble.com/soyjjbeta"><img src="assets/btn-dribbble.svg" height="52" alt="Dribbble de JJBeta"></a>
+  &nbsp;
+  <a href="https://wa.me/573152116330"><img src="assets/btn-whatsapp.svg" height="52" alt="WhatsApp 315 211 6330"></a>
+  &nbsp;
+  <a href="https://jjbeta-dev.github.io/plantillas/"><img src="assets/btn-plantillas.svg" height="52" alt="Plantillas web de JJBeta"></a>
 </p>
 
 <!-- texto:inicio -->
@@ -144,9 +148,11 @@ $ jjbeta --contacto
 > instagram.com/soyjjbeta
 > behance.net/soyjjbeta
 > dribbble.com/soyjjbeta
+> WhatsApp 315 211 6330
+> jjbeta-dev.github.io/plantillas
 ```
 
-[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta)
+[**Escríbeme**](mailto:jjbetacode@gmail.com) · [**LinkedIn**](https://www.linkedin.com/in/jjbeta) · [**Instagram**](https://www.instagram.com/soyjjbeta/) · [**Behance**](https://www.behance.net/soyjjbeta) · [**Dribbble**](https://dribbble.com/soyjjbeta) · [**WhatsApp**](https://wa.me/573152116330) · [**Plantillas**](https://jjbeta-dev.github.io/plantillas/)
 
 <sub>JJBeta · siempre en beta.</sub>
 

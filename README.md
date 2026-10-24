@@ -83,7 +83,7 @@ export const jjbeta = {
 #### Experiencia
 
 > **Front-End Developer y UX/UI Designer** · [Asincode S.A.S.](https://asincode.co)
-> <br>`nov 2025 → hoy` · 10 meses en el equipo
+> <br>`nov 2025 → hoy` · 11 meses en el equipo
 
 - Construyo interfaces en React y TypeScript con TanStack Query, Zod e i18n.
 - Diseño flujos y pantallas en Figma antes de escribir código.
